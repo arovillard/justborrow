@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
-  # has_many :products
-  # has_many :products, :through => :rentals
+  has_many :products
+  has_many :products, :through => :rentals
 
 end

@@ -1,7 +1,7 @@
 class Product < ActiveRecord::Base
-
-  # belongs_to :user
-  # has_many :rentals
+before_filter :ensure_logged_in, :only => [:edit, :destroy, :new]
+  belongs_to :lender, class_name: "User" #lender
+  has_many :rentals
   #belongs_to :category
 
 
