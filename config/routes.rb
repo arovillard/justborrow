@@ -1,8 +1,9 @@
 Justborrowit::Application.routes.draw do
-  get "sessions/new"
+  root 'products#index'
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get "signup" => "users#new", :as => "signup"
+  resources :sessions, :only => [:new, :create, :destroy]
   resources :users
   resources :products
   resources :rentals
@@ -11,7 +12,7 @@ Justborrowit::Application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
