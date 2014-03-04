@@ -1,2 +1,8 @@
-<h1>Products#show</h1>
-<p>Find me in app/views/products/show.html.erb</p>
+<div>
+  <ul>
+    <li><h3><%=@product.title%></h3></li>
+    <li><h5><%=@product.description%></h5></li>
+    <li><h5>$<%=@product.price%></h5></li>
+    <li><h5><%=@product.lender.email%></h5></li>
+  </ul>
+</div>

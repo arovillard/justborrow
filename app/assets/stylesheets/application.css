@@ -13,3 +13,10 @@
 
  *= require_tree .
  */
+.index-product ul {
+  list-style-type: none;
+}
+.index-product {
+  width: 20%;
+  float: left;
+}
