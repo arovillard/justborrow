@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-
+  before_filter :ensure_logged_in, :except => [:index,:show]
   def index
     @products = Product.all
   end
@@ -13,7 +13,12 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @product = Product.new(product_params)
+    @product = User.product.new(product_params)
+    if @product.save
+      redirect_to product_path(@product), notice: 'breakpoint created!'
+    else
+      render :new, notice: "something went wrong, please try again"
+    end
   end
 
   def edit
