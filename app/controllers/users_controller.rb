@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 
+  add_breadcrumb "home", :root_path
+  add_breadcrumb "my", :my_path
+
   def new
     @user = User.new
+    add_breadcrumb 'new user', new_user_path
   end
 
   def create
@@ -16,10 +20,15 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @products = @user.products
+
+    # add_breadcrumb 'your products', user_products_path
   end
 
   def edit
     @user = User.find(params[:id])
+
+    add_breadcrumb 'edit profile', edit_user_path
+
   end
 
   def update

@@ -1,10 +1,13 @@
-<div class="index-product">
-<%= link_to( product_path(product) ) do %>
-  <ul>
-    <li><h3><%= product.title %></h3></li>
-    <li><h5><%= product.description %></h5></li>
-    <li><h5>$<%= product.price %></h5></li>
-    <li><h5><%=link_to product.lender.email, controller: "users", action: "show", id: product.lender.id %></h5></li>
-  </ul>
-<% end %>
+<div class="col-lg-3">
+  <div class="thumbnail">
+    <img src="http://placehold.it/800x600/e0e0e0" />
+      <div class="caption">
+        <%= link_to( product_path(product) ) do %>
+          <small><%= product.title %></small></br>
+          <small><%= product.description %></small></br>
+          <p><strong>$<%= product.price %></strong></p>
+          <!-- <small><%=link_to product.lender.email, controller: "users", action: "show", id: product.lender.id %></small> -->
+      <% end %>
+    </div>
+  </div>
 </div>

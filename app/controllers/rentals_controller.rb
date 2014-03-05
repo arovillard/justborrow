@@ -3,6 +3,7 @@ class RentalsController < ApplicationController
   before_filter :ensure_logged_in
 
   def new
+    add_breadcrumb 'new rental', new_product_rental_path
   end
 
   def create
@@ -16,9 +17,11 @@ class RentalsController < ApplicationController
   end
 
   def show
+    add_breadcrumb 'product rentals', product_rental_path
   end
 
   def edit
+    add_breadcrumb 'edit rental', edit_product_rental_path
   end
 
   def update

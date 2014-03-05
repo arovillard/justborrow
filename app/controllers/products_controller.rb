@@ -3,26 +3,33 @@ class ProductsController < ApplicationController
   before_filter :find_product, :only => [:show, :edit, :update, :destroy]
   def index
     @products = Product.all
+
+    add_breadcrumb "Products", products_path
   end
 
   def show
     @rental = Rental.new
+    @product = Product.find(params[:id])
+    add_breadcrumb 'products', product_path
   end
 
   def new
     @product = Product.new
+    add_breadcrumb 'new product', new_product_path
   end
 
   def create
     @product = current_user.products.build(product_params)
+
     if @product.save
-      redirect_to product_path(@product), notice: 'breakpoint created!'
+      redirect_to product_path(@product), notice: 'Product created!'
     else
       render :new, notice: "something went wrong, please try again"
     end
   end
 
   def edit
+    add_breadcrumb 'edit product', edit_product_path
   end
 
   def update

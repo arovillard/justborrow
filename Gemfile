@@ -35,7 +35,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+# Bootstrap
 gem 'bootstrap-sass'
+
+# WebBreadcrumbs. Creates a secondary navigation on the site.  Pretty nice actually.
+gem "breadcrumbs_on_rails"
+
 
 group :development do
   gem 'rails_layout'

@@ -29,7 +29,7 @@ a:hover {
 }
 
 .panel-title {
-  font-weight: bold; 
+  font-weight: bold;
 }
 
 a.list-group-item:hover, a.list-group-item.active, a.list-group-item.active:hover {
@@ -63,11 +63,11 @@ a.list-subgroup-item:hover, a.list-subgroup-item.active, a.list-subgroup-item.ac
   color: #d9534f;
 }
 
-.pagination > .active > a, 
-.pagination > .active > span, 
-.pagination > .active > a:hover, 
-.pagination > .active > span:hover, 
-.pagination > .active > a:focus, 
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
 .pagination > .active > span:focus {
   background-color: #d9534f;
   border-color: #d43f3a;
@@ -85,7 +85,7 @@ a.list-subgroup-item:hover, a.list-subgroup-item.active, a.list-subgroup-item.ac
 
 /* Content */
 
-.content { 
+.content {
   margin: 0;
 }
 
@@ -223,13 +223,13 @@ a.list-subgroup-item:hover, a.list-subgroup-item.active, a.list-subgroup-item.ac
 }
 
 .content-right .classifieds-table .thumbnail {
-  margin: 0 10px 0 0;  
+  margin: 0 10px 0 0;
 }
 
 .content-right .classifieds-table a.thumbnail:hover,
 .content-right .classifieds-table a.thumbnail:focus,
 .content-right .classifieds-table a.thumbnail.active {
-  border-color: #d9534f;  
+  border-color: #d9534f;
 }
 
 /* Footer */
