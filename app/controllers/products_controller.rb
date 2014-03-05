@@ -6,7 +6,7 @@ class ProductsController < ApplicationController
   end
 
   def show
-    @rental = Rental.new( :product_id => @product.id)
+    @rental = Rental.new
   end
 
   def new

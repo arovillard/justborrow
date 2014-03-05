@@ -1,4 +1,4 @@
-      <div class="row content">
+    <div class="row content">
         <div class="col-lg-3 content-left">
           <h4>Search</h4>
           <div class="well well-sm">
@@ -135,3 +135,44 @@
           </div>
         </div>
       </div>
+=======
+
+
+<% if current_user %>
+  <div class="rental-form">
+  <h2>Rent this item</h2>
+  <%= form_for ([@product, @rental]) do |f| %>
+    <% if @rental.errors.any?  %>
+      <div id = "error_explanation">
+        <h2><%= pluralize(@rental.errors.count, "error") %> prevented this rental from being saved.</h2>
+        <ul>
+          <% @rental.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class = "field">
+      <p>
+        <%= f.label :start_date %><br/>
+        <%= f.date_field :start_date %>
+      </p>
+      <p>
+        <%= f.label :end_date %><br/>
+        <%= f.date_field :end_date %>
+      </p>
+      <%= f.hidden_field :borrower_id, :value => current_user.id %>
+
+    </div>
+
+    <div class = "actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+  </div>
+<% else %>
+  <%= link_to "Please log in to borrow this item!", new_session_path %>
+<% end %>
+
+>>>>>>> 2bb8455633900616e16d8f0b6c2206b9237c764c
