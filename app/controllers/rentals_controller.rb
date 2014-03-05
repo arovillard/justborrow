@@ -30,7 +30,7 @@ class RentalsController < ApplicationController
   end
 
   def load_product
-    @product = Product.find(3)
+    @product = Product.find(params[:product_id])
   end
 
 end
