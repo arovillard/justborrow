@@ -5,8 +5,9 @@ Justborrowit::Application.routes.draw do
   get "signup" => "users#new", :as => "signup"
   resources :sessions, :only => [:new, :create, :destroy]
   resources :users
-  resources :products
-  resources :rentals
+  resources :products do
+   resources :rentals
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
