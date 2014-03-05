@@ -6,3 +6,35 @@
     <li><h5><%=@product.lender.email%></h5></li>
   </ul>
 </div>
+
+
+<div class="rental-form">
+<h2>Rent this item</h2>
+<%= form_for (@rental) do |f| %>
+  <% if @rental.errors.any?  %>
+    <div id = "error_explanation">
+      <h2><%= pluralize(@rental.errors.count, "error") %> prevented this rental from being saved.</h2>
+      <ul>
+        <% @rental.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class = "field">
+    <p>
+      <%= f.label :start_date %><br/>
+      <%= f.date_field :start_date %>
+    </p>
+    <p>
+      <%= f.label :end_date %><br/>
+      <%= f.date_field :end_date %>
+    </p>
+  </div>
+
+  <div class = "actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
