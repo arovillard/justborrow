@@ -1,31 +1,36 @@
-<%= form_for @user do |f| %>
+<div class="col-md-12">
+  <%= form_for @user do |f| %>
   <% if @user.errors.any? %>
 
-    <!-- make partial later -->
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
+  <!-- make partial later -->
+  <div class="error_messages">
+    <h2>Form is invalid</h2>
+    <ul>
+      <% for message in @user.errors.full_messages %>
+      <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
   <% end %>
 
-<div class="large-3 columns large-centered center">
-  <h3>Sign Up</h3>
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
+  <div class="form-group">
+    <%= f.label :email %>:
+    <%= f.text_field :email, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
+
+    <div class="form-group">
+    <%= f.label :password %>:
+    <%= f.password_field :password, class: 'form-control' %>
   </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation %>:
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
   </div>
-  <div class="actions"><%= f.submit "Sign Up", :class => 'button expand button-color' %></div>
-<% end %>
+
+  <div class="form-group">
+    <div class="actions"><%= f.submit "Sign Up", :class => 'btn btn-success btn-blockr' %></div>
+  </div>
+
+  <% end %>
 </div>
