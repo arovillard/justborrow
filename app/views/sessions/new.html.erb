@@ -1,18 +1,23 @@
-<div class="large-3 columns large-centered center">
-  <%= form_tag sessions_path do %>
-    <div class="field">
-      <%= label_tag :email %>
-      <%= text_field_tag :email, params[:email] %>
-    </div>
-    <div class="field">
-      <%= label_tag :password %>
-      <%= password_field_tag :password %>
-    </div>
-    <div class="field">
-      <%= check_box_tag :remember_me, 1, params[:remember_me] %>
-      <%= label_tag :remember_me %>
-    </div>
-    <div class="actions"><%= submit_tag "Log in", :class => 'button expand button-color' %></div>
-  <% end %>
-</div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <%= form_for sessions_path do %>
+                        <div class="form-group">
+                          <label class="sr-only" for="exampleInputEmail2">Email address:</label>
+                          <%= text_field_tag :email, params[:email], :class => 'form-control' %>
+                        </div>
+                        <div class="form-group">
+                          <label class="sr-only" for="exampleInputPassword2">Password:</label>
+                          <%= password_field_tag :password, "", :class => 'form-control' %>
+                        </div>
+                        <div class="checkbox">
+                          <label>
+                            Remember me:
+                            <%= check_box_tag :remember_me, 0, params[:remember_me] %>
+                        </div>
+                        <div class="form-group">
+                          <div class="actions"><%= submit_tag "Log in", :class => 'btn btn-success btn-blockr' %></div>
+                        </div>
 
+                     <% end %>
+                    </div>
+                  </div>
