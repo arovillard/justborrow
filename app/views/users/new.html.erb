@@ -1,29 +1,15 @@
                   <div class="row">
                     <div class="col-md-12">
                         <%= form_for @user do |f| %>
-                        <% if @user.errors.any? %>
 
-                        <!-- make partial later -->
-                        <div class="error_messages">
-                          <h2>Form is invalid</h2>
-                          <ul>
-                            <% for message in @user.errors.full_messages %>
-                            <li><%= message %></li>
-                            <% end %>
-                          </ul>
-                        </div>
-                        <% end %>
                         <div class="form-group">
-                          <label class="sr-only" for="exampleInputEmail2">Email address:</label>
-                          <%= f.text_field :email, class: 'form-control' %>
+                          Your email address: <%= f.text_field :email, {class: 'form-control', id: "exampleInputEmail2", placeholder: "Email address", required: ""}%>
                         </div>
                         <div class="form-group">
-                          <label class="sr-only" for="exampleInputPassword2">Password:</label>
-                          <%= f.password_field :password, class: 'form-control' %>
+                          Password: <%= f.password_field :password, {class: 'form-control', id: "exampleInputEmail2", placeholder: "Password", required: ""} %>
                         </div>
                         <div class="form-group">
-                          <label class="sr-only" for="exampleInputPassword2">Password Confirmation:</label>
-                          <%= f.password_field :password_confirmation, class: 'form-control' %>
+                          Confirm your password: <%= f.password_field :password_confirmation, {class: 'form-control', id: "exampleInputEmail2", placeholder: "Password Confirmation", required: ""} %>
                         </div>
 
 
