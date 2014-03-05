@@ -1,11 +1,18 @@
 class RentalsController < ApplicationController
+  before_filter :load_product
+  before_filter :ensure_logged_in
+
   def new
   end
 
   def create
-  end
+    @rental = @product.rentals.new(rental_params)
 
-  def index
+    if @rental.save
+      redirect_to product_path(@product), notice: 'rental created!'
+    else
+      redirect_to product_path(@product), notice: "something went wrong"
+    end
   end
 
   def show
@@ -16,4 +23,14 @@ class RentalsController < ApplicationController
 
   def update
   end
+
+  private
+  def rental_params
+    params.require(:rental).permit(:borrower_id, :product_id, :start_date, :end_date)
+  end
+
+  def load_product
+    @product = Product.find(3)
+  end
+
 end

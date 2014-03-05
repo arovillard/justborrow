@@ -1,6 +1,6 @@
 class Rental < ActiveRecord::Base
 
-  belongs_to :user
+  belongs_to :borrower, class_name: "User" #lender
   belongs_to :product
 
 end

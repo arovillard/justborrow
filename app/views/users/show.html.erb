@@ -1,2 +1,6 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<h3>Products belonging to <%= @user.email %></h3>
+<ul >
+  <% @products.each do |product| %>
+    <%= render partial: 'products/product', object: product %>
+  <% end %>
+</ul>

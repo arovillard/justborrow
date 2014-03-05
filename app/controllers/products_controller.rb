@@ -6,6 +6,7 @@ class ProductsController < ApplicationController
   end
 
   def show
+    @rental = Rental.new( :product_id => @product.id)
   end
 
   def new
@@ -42,6 +43,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:lender_id, :title, :description, :price)
+    params.require(:product).permit(:lender_id, :borrower_id, :title, :description, :price, :product_id)
   end
 end
