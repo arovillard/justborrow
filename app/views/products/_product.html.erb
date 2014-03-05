@@ -1,0 +1,10 @@
+<div class="index-product">
+<%= link_to( product_path(product) ) do %>
+  <ul>
+    <li><h3><%= product.title %></h3></li>
+    <li><h5><%= product.description %></h5></li>
+    <li><h5>$<%= product.price %></h5></li>
+    <li><h5><%=link_to product.lender.email, controller: "users", action: "show", id: product.lender.id %></h5></li>
+  </ul>
+<% end %>
+</div>
