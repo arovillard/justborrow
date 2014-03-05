@@ -13,7 +13,7 @@
     <div class="container wrapper">
      <!-- Logo -->
       <div class="logo">
-        <a href="index.html"><%= image_tag "czsale_logo.png" %></a>
+        <%= image_tag "czsale_logo.png" %>
       </div>
       <!-- /Logo -->
       <!-- Static navbar -->
@@ -50,24 +50,28 @@
                 <li>
                   <div class="row">
                     <div class="col-md-12">
-                      <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
+
+                      <%= form_tag sessions_path do %>
                         <div class="form-group">
                           <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                          <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
+                          <%= text_field_tag :email, params[:email], :class => 'form-control' %>
                         </div>
                         <div class="form-group">
                           <label class="sr-only" for="exampleInputPassword2">Password</label>
-                          <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
+                          <%= password_field_tag :password, "", :class => 'form-control' %>
                         </div>
                         <div class="checkbox">
                           <label>
                             <input type="checkbox"> Remember me
+                            <%= check_box_tag :remember_me, 1, params[:remember_me] %>
                           </label>
                         </div>
+
                         <div class="form-group">
-                          <button type="submit" class="btn btn-success btn-block">Sign in</button>
+                          <div class="actions"><%= submit_tag "Log in", :class => 'btn btn-success btn-blockr' %></div>
                         </div>
-                      </form>
+
+                     <% end %>
                     </div>
                   </div>
                 </li>
@@ -87,20 +91,20 @@
         <div class="well well-sm">
           <div class="pull-left">
             <ul class="nav nav-pills">
-              <li><a href="addClassified.html"><span class="glyphicon glyphicon-plus"></span> Add classified</a></li>
+              <li><%= link_to 'List a new item', new_product_path(@product) %></li>
             </ul>
           </div>
           <div class="pull-right">
             <ul class="nav nav-pills">
               <li><a href="help.html">Help</a></li>
               <li><a href="contact.html">Contact</a></li>
-              <li><a href="conditions.html">Rules & conditions</a></li>
+              <li><a href="conditions.html">Terms & conditions</a></li>
             </ul>
           </div>
           <div class="clearfix">&nbsp;</div>
         </div>
         <div class="pull-right">
-          <p class="text-muted"><small>Copyright &copy; 2013-2014, SenseMedia.cz - All Rights Reserved.</small></p>
+          <p class="text-muted"><small>Copyright &copy; 2014, JustBorrow.it - All Rights Reserved.</small></p>
         </div>
       </div>
     </div>
