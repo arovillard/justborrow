@@ -7,8 +7,8 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_uniqueness_of :email
 
+  has_many :rentals, foreign_key: "borrower_id"
   has_many :products, foreign_key: "lender_id"
-  has_many :rentals
-  # has_many :borrowed_products, through: :rentals, source: :user
+  has_many :borrowed_products, through: :rentals, source: :user
 
 end
