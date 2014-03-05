@@ -1,6 +1,7 @@
 class ProductsController < ApplicationController
   before_filter :ensure_logged_in, :except => [:index,:show]
   before_filter :find_product, :only => [:show, :edit, :update, :destroy]
+
   def index
     @products = Product.all
 
@@ -50,6 +51,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:lender_id, :borrower_id, :title, :description, :price, :product_id)
+    params.require(:product).permit(:lender_id, :title, :description, :price, :tag_list)
   end
 end

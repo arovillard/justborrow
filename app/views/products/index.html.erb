@@ -65,7 +65,11 @@
           </div>
           <h4>Recommended</h4>
           <div class="row selected-classifieds">
+            <% if params[:tag] %>
+              <%= render @products.tagged_with(params[:tag]) %>
+            <% else %>
               <%= render @products %>
+            <% end %>
           </div>
         </div>
       </div>

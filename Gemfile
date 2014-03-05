@@ -18,6 +18,9 @@ gem 'coffee-rails', '~> 4.0.0'
 #sorcery
 gem 'sorcery'
 
+#acts_as_tggable_on
+gem 'acts-as-taggable-on'
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
