@@ -1,18 +1,16 @@
-<%= form_for @user do |f| %>
-  <% if @user.errors.any? %>
+                <%= form_for @user do |f| %>
+                  <% if @user.errors.any? %>
 
-    <!-- make partial later -->
-    <div class="error_messages">
-      <h2>Oh no, there was an error!</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-
+                    <!-- make partial later -->
+                    <div class="error_messages">
+                      <h2>Oh no, there was an error!</h2>
+                      <ul>
+                        <% for message in @user.errors.full_messages %>
+                          <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
                   <div class="row">
                     <div class="col-md-12">
 
