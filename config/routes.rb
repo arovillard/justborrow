@@ -8,6 +8,7 @@ Justborrowit::Application.routes.draw do
   resources :users
   resources :products do
    resources :rentals
+   resources :categories
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

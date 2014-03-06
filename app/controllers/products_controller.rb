@@ -16,6 +16,8 @@ class ProductsController < ApplicationController
 
   def new
     @product = Product.new
+    @category = Category.new
+    @categories = Category.all
     add_breadcrumb 'new product', new_product_path
   end
 
@@ -51,6 +53,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:lender_id, :title, :description, :price, :tag_list)
+    params.require(:product).permit(:lender_id, :title, :description, :price, :tag_list, :category_name_id)
   end
 end
