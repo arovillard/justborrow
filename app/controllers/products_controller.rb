@@ -11,24 +11,31 @@ class ProductsController < ApplicationController
   def show
     @rental = Rental.new
     @product = Product.find(params[:id])
+    @product_images = @product.product_images.all
     add_breadcrumb 'products', product_path
   end
 
   def new
     @product = Product.new
-    @category = Category.new
     @categories = Category.all
+    @product_image = @product.product_images.build
     add_breadcrumb 'new product', new_product_path
   end
 
   def create
     @product = current_user.products.build(product_params)
 
-    if @product.save
-      redirect_to product_path(@product), notice: 'Product created!'
-    else
-      render :new, notice: "something went wrong, please try again"
+    respond_to do |format|
+      if @product.save
+         params[:product_images]['image'].each do |i|
+            @product_image = @product.product_images.create!(:image => i, :product_id => @product.id)
+         end
+         format.html { redirect_to @product, notice: 'Product was successfully created.' }
+       else
+         format.html { render action: 'new' }
+      end
     end
+
   end
 
   def edit
@@ -36,14 +43,21 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if @product.update_attributes(product_params)
-      redirect_to products_path(@product)
+    respond_to do |format|
+      if @product.update(post_params)
+          params[:images]['image'].each do |a|
+            @image = @product.images.create!(:image => a, :product_id => @product.id)
+          end
+      end
     end
   end
 
   def destroy
     @product.destroy
-    redirect_to products_path
+    respond_to do |format|
+      format.html { redirect_to products_path }
+      format.json { head :no_content }
+    end
   end
 
   private
@@ -53,6 +67,6 @@ class ProductsController < ApplicationController
   end
 
   def product_params
-    params.require(:product).permit(:lender_id, :title, :description, :price, :tag_list, :category_id)
+    params.require(:product).permit(:lender_id, :title, :description, :price, :tag_list, :category_id, :product_id, :image)
   end
 end
