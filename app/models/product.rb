@@ -2,6 +2,7 @@ class Product < ActiveRecord::Base
   acts_as_taggable
   belongs_to :lender, class_name: "User" #lender
   has_many :rentals
+  belongs_to :category
   #belongs_to :category
 
 
