@@ -21,6 +21,11 @@ gem 'sorcery'
 #acts_as_tggable_on
 gem 'acts-as-taggable-on'
 
+#carrierwave
+gem 'carrierwave'
+
+gem "mini_magick"
+
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 

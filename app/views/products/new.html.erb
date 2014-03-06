@@ -10,7 +10,7 @@
         <h3 class="panel-title">Item Details</h3>
       </div>
       <div class="panel-body">
-        <%= form_for ([@product]) do |f| %>
+        <%= form_for @product, :html => { :multipart => true } do |f| %>
         <div class="form-group">
           <label for="heading">Item Title</label>
           <%= f.text_area :title, { class: 'form-control', id: "heading", placeholder: "ex. Mastercraft circular saw", required: ""} %>
@@ -29,6 +29,30 @@
             </div>
           </div>
         </div>
+
+
+        <div class="form-group">
+          <label>Image</label>
+          <div class="form-inline">
+            <div class="form-group">
+              <div class="input-group" style="width: 300px;">
+                <%= f.fields_for :product_image, { class: 'form-control', type: 'file', id: 'image'} do |p| %>
+                 <div class="field">
+                   <%= p.file_field :image, :multiple => true, name: "product_images[image][]" %>
+                 </div>
+               <% end %>
+
+               <% if params[:controller] == "product" && params[:action] == "edit" %>
+                 <% @product.product_images.each do |p| %>
+                   <%= image_tag p.image, :size => "150x150" %>
+                 <% end %>
+               <% end %>
+               </div>
+            </div>
+          </div>
+        </div>
+
+
         <div class="form-group">
           <label for="zip">Item tags:</label>
             <%= f.text_area :tag_list, { class: 'form-control', type:"text", placeholder: "Tags seperated by commas" } %>

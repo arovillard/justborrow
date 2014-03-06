@@ -7,6 +7,7 @@ Justborrowit::Application.routes.draw do
 
   resources :sessions, :only => [:new, :create, :destroy]
   resources :users
+  resources :product_images
   resources :products do
    resources :rentals
    resources :categories

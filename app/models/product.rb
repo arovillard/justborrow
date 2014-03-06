@@ -1,8 +1,12 @@
 class Product < ActiveRecord::Base
   acts_as_taggable
+  mount_uploader :image, ImageUploader
   belongs_to :lender, class_name: "User" #lender
-  has_many :rentals
   belongs_to :category
+  has_many :rentals
+  has_many :product_images
+  accepts_nested_attributes_for :product_images
+
   #belongs_to :category
 
 
