@@ -26,7 +26,7 @@
       <%= f.text_field :price %>
     </p>
     <p>
-      <%= f.collection_select :category_id, @categories.all, :id, :category_name  %>
+      <%= f.collection_select :category_id, @categories, :id, :category_name  %>
     </p>
     <p>
       <%= f.label :tag_list, "Tags separated by commas" %><br/>
