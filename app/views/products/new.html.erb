@@ -1,52 +1,41 @@
-        <div class="col-lg-9 content-right">
-          <ol class="breadcrumb">
-            <li><%= render_breadcrumbs :separator => ' / ' %></li>
-          </ol>
-          <h2>Add an item</h2>
-          <p>Use the form below to add an item for rent to the JustBorrow.it inventory.  Once your item is added users in your neighbourhood will be able to request to borrow your item and you can get paid!</p>
-          <hr>
-            <div class="panel panel-info">
-              <div class="panel-heading">
-                <h3 class="panel-title">Item Details</h3>
-              </div>
-              <div class="panel-body">
-                <div class="form-group">
-                  <label for="heading">Item Title</label>
+<div class="product-form">
+<h2>Add product</h2>
+<%= form_for ([@product]) do |f| %>
+  <% if @product.errors.any?  %>
+    <div id = "error_explanation">
+      <h2><%= pluralize(@product.errors.count, "error") %> prevented this product from being saved.</h2>
+      <ul>
+        <% @product.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+<%= render_breadcrumbs :separator => ' / ' %>
+  <div class = "field">
+    <p>
+      <%= f.label :title %><br/>
+      <%= f.text_area :title %>
+    </p>
+    <p>
+      <%= f.label :description %><br/>
+      <%= f.text_area :description %>
+    </p>
+     <p>
+      <%= f.label :price %><br/>
+      <%= f.text_field :price %>
+    </p>
+    <p>
+      <%= f.collection_select :category_id, @categories.all, :id, :category_name  %>
+    </p>
+    <p>
+      <%= f.label :tag_list, "Tags separated by commas" %><br/>
+      <%= f.text_area :tag_list %>
+    </p>
+  </div>
 
-                  <%= form_for ([@product]) do |f| %>
-                  <%= f.text_area :title, { class: 'form-control', id: "heading", placeholder: "ex. Mastercraft circular saw", required: ""} %>
-                </div>
-                <div class="form-group">
-                  <label for="text">Description</label>
-                  <%= f.text_area :description, { class: 'form-control', id: "text", placeholder: "ex. My beautiful Mastercraft saw will help you build anything you want...", required: ""} %>
-                </div>
-                <div class="form-group">
-                  <label>Price</label>
-                  <div class="form-inline">
-                    <div class="form-group">
-                      <div class="input-group" style="width: 150px;">
-                        <%= f.text_field :price, { class: 'form-control', type: 'text', id: 'price'} %>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="zip">Item tags:</label>
-                    <%= f.text_area :tag_list, { class: 'form-control', type:"text", placeholder: "Tags seperated by commas" } %>
-                </div>
-                 <div class="form-group">
-                  <label>Categories:</label>
-                  <%= f.collection_select :category_id, @categories.all, :id, :category_name  %>
-                </div>
-              </div>
-            </div>
-            <div class="well">
-              <p>By listing your item on JustBorrow.it you agree to the JustBorrow.it terms of use.</p>
-              <div class="checkbox">
-                <label><input type="checkbox"> I agree to the <a href="#">Terms of Use</a></label>
-              </div>
-              <%= f.submit %>
-            </div>
-          <% end %>
-        </div>
-      </div>
+  <div class = "actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+</div>
