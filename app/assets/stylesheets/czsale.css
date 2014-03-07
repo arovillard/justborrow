@@ -232,6 +232,12 @@ a.list-subgroup-item:hover, a.list-subgroup-item.active, a.list-subgroup-item.ac
   border-color: #d9534f;
 }
 
+.content-right #mapbox {
+  border: 1px solid #dddddd;
+  border-radius: 4px;
+  padding: 10px;
+}
+
 /* Footer */
 
 .footer {
