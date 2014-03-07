@@ -1,9 +1,9 @@
 == Feature Backlog
 
 * hephalump - update user model, user forms
-* hephalump - signed in menu validation
-* hephalump - create logo
-* hephalump - product seeds file
+* hephalump - signed in menu validation  <<DONE>>
+* hephalump - create logo <<DONE>>
+* hephalump - product seeds file <<DONE>>
 * hephalump - media query for categories section
 
 * arovillard - rental logic
