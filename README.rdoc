@@ -1,5 +1,12 @@
 == Feature Backlog
 
+* make pricing information two decimal places on the homepage
+* limit the length of the add description on the homepage
+* alias from products to "items"
+* integrate paypal payments
+* integrate automatic payments to lenders
+* get rent-to-own process going
+
 * hephalump - update user model, user forms
 * hephalump - signed in menu validation  <<DONE>>
 * hephalump - create logo <<DONE>>
