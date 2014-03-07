@@ -24,28 +24,6 @@
                             </div>
                           <% end %>
                         <% end %>
-
-
-<!--                         <div class="active item" data-slide-number="0">
-                          <%= image_tag @product.image_url.to_s, :class => "img-responsive" %>
-                        </div>
-                        <div class="item" data-slide-number="1">
-                          <img src="http://placehold.it/1024x768/e0e0e0/&text=Image+2" class="img-responsive" />
-                        </div>
-                        <div class="item" data-slide-number="2">
-                          <img src="http://placehold.it/1024x768/e0e0e0/&text=Image+3" class="img-responsive" />
-                        </div>
-                        <div class="item" data-slide-number="3">
-                          <img src="http://placehold.it/1024x768/e0e0e0/&text=Image+4" class="img-responsive" />
-                        </div>
-                        <div class="item" data-slide-number="4">
-                          <img src="http://placehold.it/1024x768/e0e0e0/&text=Image+5" class="img-responsive" />
-                        </div> -->
-
-
-
-
-
                       </div>
                       <a class="carousel-control left" href="#detailCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
                       <a class="carousel-control right" href="#detailCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
@@ -61,7 +39,7 @@
                     <% count1 = 0 %>
                     <% @product_images.each do |p| %>
                       <% if count1 == 0 %>
-                        <li><a id="carousel-selector-<%= count1 %>" class="selected"><%= image_tag p.image_url(:thumb), :class => "img-responsive" %></a></li>
+                        <li><a id="carousel-selector-<%= count1 %>" class=""><%= image_tag p.image_url(:thumb), :class => "img-responsive" %></a></li>
                       <% else %>
                         <li><a id="carousel-selector-<%= count1 %>"><%= image_tag p.image_url(:thumb), :class => "img-responsive" %></a></li>
                       <% end %>

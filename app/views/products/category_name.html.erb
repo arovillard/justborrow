@@ -1,0 +1,15 @@
+<div class="col-lg-9 content-right">
+  <h4>Featured</h4>
+  <div id="slides">
+    <%= link_to(image_tag("slides/slide-00.jpg")) %>
+    <%= link_to(image_tag("slides/slide-01.jpg")) %>
+    <%= link_to(image_tag("slides/slide-02.jpg")) %>
+    <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>
+    <a href="#" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>
+  </div>
+  <h4><%= @category.category_name %></h4>
+  <div class="row selected-classifieds">
+    <%= render @category_products %>
+  </div>
+</div>
+</div>

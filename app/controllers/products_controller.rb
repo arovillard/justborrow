@@ -4,7 +4,6 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
-
     add_breadcrumb "Products", products_path
   end
 
@@ -13,6 +12,11 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
     @product_images = @product.product_images.all
     add_breadcrumb 'products', product_path
+  end
+
+  def category_page
+    @category = Category.find(params[:category_id])
+    @category_products = @category.products
   end
 
   def new

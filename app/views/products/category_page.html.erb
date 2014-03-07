@@ -1,0 +1,35 @@
+<div class="col-lg-9 content-right">
+          <h4></h4>
+          <div id="slides">
+            <%= link_to(image_tag("slides/slide-00.jpg")) %>
+            <%= link_to(image_tag("slides/slide-01.jpg")) %>
+            <%= link_to(image_tag("slides/slide-02.jpg")) %>
+            <a href="#" class="slidesjs-previous slidesjs-navigation"><i class="icon-chevron-left icon-large"></i></a>
+            <a href="#" class="slidesjs-next slidesjs-navigation"><i class="icon-chevron-right icon-large"></i></a>
+          </div>
+          <h4>Category: <%= @category.category_name %></h4>
+          <div class="row selected-classifieds">
+            <% @category_products.each do |category_product| %>
+              <div class="col-lg-3">
+                <div class="thumbnail">
+                  <% if category_product.product_images.first %>
+                    <%= image_tag category_product.product_images.first.image_url(:thumb) %>
+                  <% else %>
+                    <img src="http://placehold.it/800x600/e0e0e0" />
+                  <% end %>
+                    <div class="caption">
+                      <%= link_to( product_path(category_product) ) do %>
+                        <small><%= category_product.title %></small></br>
+                        <small><%= category_product.description %></small></br>
+                        <p><strong>$<%= category_product.price %></strong></p>
+                    <% end %>
+                    <small><b>Category:</b> <%= category_product.category.category_name %></small><br>
+                    <small><b>Tags:</b> <%= raw category_product.tag_list.map {|t| link_to t, tag_path(t)}.join(",  ") %></small>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+

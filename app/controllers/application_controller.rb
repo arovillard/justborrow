@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   add_breadcrumb "home", :root_path
 
+
   def ensure_logged_in
     unless current_user
       flash[:alert] = "Please log in."
