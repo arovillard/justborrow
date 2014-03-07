@@ -1,7 +1,5 @@
 == Feature Backlog
 
-Things you may want to cover:
-
 * hephalump - update user model, user forms
 * hephalump - signed in menu validation
 * hephalump - create logo
