@@ -24,7 +24,17 @@ gem 'acts-as-taggable-on'
 #carrierwave
 gem 'carrierwave'
 
+#mini_magick
 gem "mini_magick"
+
+#geocoder
+gem 'geocoder'
+
+#underscore
+gem "underscore-rails", "~> 1.5.2"
+
+#google maps for rails
+gem 'gmaps4rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
