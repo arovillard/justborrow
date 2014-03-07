@@ -1,9 +1,9 @@
 Justborrowit::Application.routes.draw do
   root 'products#index'
-  get 'category_page', to: 'products#category_page', as: :category_page
-  get 'tags/:tag', to: 'products#index', as: :tag
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
+  get 'category_page', to: 'products#category_page', as: :category_page
+  get 'tags/:tag', to: 'products#index', as: :tag
   get "signup" => "users#new", :as => "signup"
 
   resources :sessions, :only => [:new, :create, :destroy]
