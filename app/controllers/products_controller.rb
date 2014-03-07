@@ -4,6 +4,10 @@ class ProductsController < ApplicationController
 
   def index
     @products = Product.all
+    @hash = Gmaps4rails.build_markers(@products) do |product, marker|
+      marker.lat product.latitude
+      marker.lng product.longitude
+    end
     add_breadcrumb "Products", products_path
   end
 
