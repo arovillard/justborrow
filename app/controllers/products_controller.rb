@@ -8,6 +8,12 @@ class ProductsController < ApplicationController
       marker.lat product.latitude
       marker.lng product.longitude
     end
+
+    # remove empty lat/lng pairs
+    @hash = @hash.reject do |marker|
+      !marker[:lat] || !marker[:lng]
+    end
+
     add_breadcrumb "Products", products_path
   end
 

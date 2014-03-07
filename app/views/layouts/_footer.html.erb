@@ -26,35 +26,15 @@
       $('.dropdown-menu').find('form').click(function (e) {
         e.stopPropagation();
       });
-      // Slider
-      $("#slides").slidesjs({
-        width: 900,
-        height: 300,
-        navigation: false,
-        play: {
-          active: false,
-          effect: "slide",
-          interval: 4000,
-          auto: true,
-          swap: false,
-          pauseOnHover: true,
-          restartDelay: 2500
-        }
-      });
     });
 
     var handler = Gmaps.build('Google');
-handler.buildMap({ internal: {id: 'multi_markers'}}, function(){
-  var markers = handler.addMarkers([
-    { lat: 43, lng: 3.5},
-    { lat: 45, lng: 4},
-    { lat: 47, lng: 3.5},
-    { lat: 49, lng: 4},
-    { lat: 51, lng: 3.5}
-  ]);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
+    handler.buildMap({ internal: {id: 'multi_markers'}}, function(){
+      var markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      var poop = <%=raw @hash.to_json %>;
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
     </script>
     <!-- /JS -->
       </body>
