@@ -1,19 +1,21 @@
                   <div class="row">
                     <div class="col-md-12">
-                      <%= form_for sessions_path do %>
+                      <%= form_tag sessions_path do %>
                         <div class="form-group">
-                          <label class="sr-only" for="exampleInputEmail2">Email address:</label>
+                          <label class="sr-only" for="exampleInputEmail2">Email address</label>
                           <%= text_field_tag :email, params[:email], :class => 'form-control' %>
                         </div>
                         <div class="form-group">
-                          <label class="sr-only" for="exampleInputPassword2">Password:</label>
+                          <label class="sr-only" for="exampleInputPassword2">Password</label>
                           <%= password_field_tag :password, "", :class => 'form-control' %>
                         </div>
                         <div class="checkbox">
                           <label>
-                            Remember me:
+                            <input type="checkbox"> Remember me
                             <%= check_box_tag :remember_me, 0, params[:remember_me] %>
+                          </label>
                         </div>
+
                         <div class="form-group">
                           <div class="actions"><%= submit_tag "Log in", :class => 'btn btn-success btn-blockr' %></div>
                         </div>
