@@ -1,2 +1,77 @@
-<h1>Products#edit</h1>
-<p>Find me in app/views/products/edit.html.erb</p>
+<div class="col-lg-9 content-right">
+  <ol class="breadcrumb">
+    <li><%= render_breadcrumbs :separator => ' / ' %></li>
+  </ol>
+  <h2>Update Item</h2>
+  <p>Use the form below to update your item for rent to the JustBorrow.it inventory.  Once your item is added users in your neighbourhood will be able to request to borrow your item and you can get paid!</p>
+  <hr>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Item Details</h3>
+      </div>
+      <div class="panel-body">
+        <%= form_for @product, :html => { :multipart => true } do |f| %>
+        <div class="form-group">
+          <label for="heading">Item Title</label>
+          <%= f.text_area :title, { class: 'form-control', id: "heading", placeholder: "ex. Mastercraft circular saw", required: ""} %>
+        </div>
+        <div class="form-group">
+          <label for="text">Description</label>
+          <%= f.text_area :description, { class: 'form-control', id: "text", placeholder: "ex. My beautiful Mastercraft saw will help you build anything you want...", required: ""} %>
+        </div>
+        <div class="form-group">
+          <label>Price</label>
+          <div class="form-inline">
+            <div class="form-group">
+              <div class="input-group" style="width: 150px;">
+                <%= f.text_field :price, { class: 'form-control', placeholder: "ex. 50.99", type: 'text', id: 'price'} %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="text">Address</label>
+          <%= f.text_area :address, { class: 'form-control', id: "text", placeholder: "ex. 123 Sample st, City", required: ""} %>
+        </div>
+        <div class="form-group">
+          <label>Image</label>
+          <div class="form-inline">
+            <div class="form-group">
+              <div class="input-group" style="width: 300px;">
+                <%= f.fields_for :product_image, { class: 'form-control', type: 'file', id: 'image'} do |p| %>
+                 <div class="field">
+                   <%= p.file_field :image, :multiple => true, name: "product_images[image][]" %>
+                 </div>
+               <% end %>
+
+
+                 <% @product.product_images.each do |p| %>
+                   <%= image_tag p.image, :size => "150x150" %>
+                   <%= link_to "delete", edit_product_image_path(p) %>
+                 <% end %>
+               </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="form-group">
+          <label for="zip">Item tags:</label>
+            <%= f.text_area :tag_list, { class: 'form-control', type:"text", placeholder: "Tags seperated by commas" } %>
+        </div>
+         <div class="form-group">
+          <label>Categories:</label>
+          <%= f.collection_select :category_id, @categories.all, :id, :category_name  %>
+        </div>
+      </div>
+    </div>
+    <div class="well">
+      <p>By listing your item on JustBorrow.it you agree to the JustBorrow.it terms of use.</p>
+      <div class="checkbox">
+        <label><input type="checkbox"> I agree to the <a href="#">Terms of Use</a></label>
+      </div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+</div>

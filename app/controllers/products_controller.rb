@@ -1,14 +1,18 @@
 class ProductsController < ApplicationController
-  before_filter :ensure_logged_in, :except => [:index,:show]
+  before_filter :ensure_logged_in, :except => [:index,:show, :category_page]
   before_filter :find_product, :only => [:show, :edit, :update, :destroy]
 
   def index
-    @products = Product.all
+
+    if params[:tag]
+      @products = Product.all.tagged_with(params[:tag])
+    else
+     @products = Product.all
+    end
     @hash = Gmaps4rails.build_markers(@products) do |product, marker|
       marker.lat product.latitude
       marker.lng product.longitude
     end
-
     # remove empty lat/lng pairs
     @hash = @hash.reject do |marker|
       !marker[:lat] || !marker[:lng]
@@ -27,6 +31,15 @@ class ProductsController < ApplicationController
   def category_page
     @category = Category.find(params[:category_id])
     @category_products = @category.products
+    @hash = Gmaps4rails.build_markers(@category_products) do |product, marker|
+      marker.lat product.latitude
+      marker.lng product.longitude
+    end
+    # remove empty lat/lng pairs
+    @hash = @hash.reject do |marker|
+      !marker[:lat] || !marker[:lng]
+    end
+  add_breadcrumb "Products", products_path
   end
 
   def new
@@ -54,14 +67,24 @@ class ProductsController < ApplicationController
 
   def edit
     add_breadcrumb 'edit product', edit_product_path
+    @categories = Category.all
+    session[:return_to] ||= request.referer
+    # @product.product_images.each do |i|
+    #   i.destroy
+    # end
   end
 
   def update
     respond_to do |format|
-      if @product.update(post_params)
-          params[:images]['image'].each do |a|
-            @image = @product.images.create!(:image => a, :product_id => @product.id)
+      if @product.update(product_params)
+        if params[:product_images]
+          params[:product_images]['image'].each do |i|
+            @product_image = @product.product_images.create!(:image => i, :product_id => @product.id)
           end
+        end
+          format.html { redirect_to @product, notice: 'Product was successfully created.' }
+       else
+         format.html { render action: 'edit' }
       end
     end
   end

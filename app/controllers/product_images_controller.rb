@@ -19,6 +19,7 @@ class ProductImagesController < ApplicationController
 
   # GET /product_images/1/edit
   def edit
+    @product_image = ProductImage.find(params[:id])
   end
 
   # POST /product_images
@@ -55,10 +56,7 @@ class ProductImagesController < ApplicationController
   # DELETE /product_images/1.json
   def destroy
     @product_image.destroy
-    respond_to do |format|
-      format.html { redirect_to product_images_url }
-      format.json { head :no_content }
-    end
+    redirect_to session.delete(:return_to)
   end
 
   private

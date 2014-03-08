@@ -5,13 +5,7 @@
           </div>
           <h4>Recommended</h4>
           <div class="row selected-classifieds">
-            <% if params[:tag] %>
-              <%= render @products.tagged_with(params[:tag]) %>
-            <% elsif params[:category_id] %>
-              <%= render @products_category %>
-            <% else %>
-              <%= render @products %>
-            <% end %>
+            <%= render @products %>
           </div>
         </div>
       </div>
