@@ -46,9 +46,8 @@
       var onMarkerClick = function() {
         var marker = this;
         var latLng = marker.getPosition();
-        var prodId = marker.id
-        infoWindow.setContent('<h1> My Product id: </h1>'+ prodId + '<h3>Marker position is:</h3>' +
-            latLng.lat() + ', ' + latLng.lng());
+        var content = document.getElementById('id' + marker.id)
+        infoWindow.setContent(content.innerHTML);
 
         infoWindow.open(map, marker);
       };
@@ -97,7 +96,7 @@
           id: prodId,
           animation: google.maps.Animation.DROP,
         });
-        google.maps.event.addListener(marker, 'click', onMarkerClick);
+        google.maps.event.addListener(marker, 'mouseover', onMarkerClick);
       }
     }
 

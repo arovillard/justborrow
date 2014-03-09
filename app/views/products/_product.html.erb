@@ -1,5 +1,5 @@
 <div class="col-lg-3">
-  <div class="thumbnail">
+  <div class="thumbnail" id="id<%= product.id %>">
     <% if product.product_images.first %>
       <%= image_tag product.product_images.first.image_url(:thumb) %>
     <% else %>
