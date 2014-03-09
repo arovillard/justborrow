@@ -46,7 +46,7 @@ $( document ).ready(function() {
 
       function addMarkers() {
         for (var i = 0; i < (<%=raw @hash.to_json %>).length; i++) {
-          var latLng = new google.maps.LatLng((<%= raw @hash.to_json %>)[i][0], (<%= raw @hash.to_json %>)[i][1] );
+          var latLng = new google.maps.LatLng((<%= raw @hash.to_json %>)[i].lat, (<%= raw @hash.to_json %>)[i].lng );
           var marker = new google.maps.Marker({
             position: latLng,
             map: map
