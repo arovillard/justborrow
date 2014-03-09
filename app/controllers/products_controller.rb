@@ -12,6 +12,7 @@ class ProductsController < ApplicationController
     @hash = Gmaps4rails.build_markers(@products) do |product, marker|
       marker.lat product.latitude
       marker.lng product.longitude
+      marker.json({:id => product.id})
     end
     # remove empty lat/lng pairs
     @hash = @hash.reject do |marker|

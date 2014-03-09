@@ -20,15 +20,14 @@
       </div>
     </div>
 
-    <!-- JS moved to assets/javascript/products.js -->
   <script type="text/javascript">
     $( document ).ready(function() {
-      // Drop down menu handler
-      $('.dropdown-menu').find('form').click(function (e) {
-        e.stopPropagation();
-      });
+          // Drop down menu handler
+          $('.dropdown-menu').find('form').click(function (e) {
+            e.preventDefault();
+          });
     });
-
+// Google maps
     var map;
     var initialLocation;
     var browserSupportFlag =  new Boolean();
@@ -40,6 +39,21 @@
       };
       var mapDiv = document.getElementById('map-canvas');
       map = new google.maps.Map(mapDiv, myOptions);
+
+
+
+      var infoWindow = new google.maps.InfoWindow;
+      var onMarkerClick = function() {
+        var marker = this;
+        var latLng = marker.getPosition();
+        var prodId = marker.id
+        infoWindow.setContent('<h1> My Product id: </h1>'+ prodId + '<h3>Marker position is:</h3>' +
+            latLng.lat() + ', ' + latLng.lng());
+
+        infoWindow.open(map, marker);
+      };
+
+
 
       google.maps.event.addListenerOnce(map, 'tilesloaded', addMarkers);
        // Try W3C Geolocation (Preferred)
@@ -68,21 +82,31 @@
         }
         map.setCenter(initialLocation);
       }
-    }
+
+
 
     function addMarkers() {
       for (var i = 0; i < (<%=raw @hash.to_json %>).length; i++) {
+        console.log((<%= raw @hash.to_json %>)[i]);
         var latLng = new google.maps.LatLng((<%= raw @hash.to_json %>)[i].lat, (<%= raw @hash.to_json %>)[i].lng );
+        var prodId = <%= raw @hash.to_json %>[i].id;
         var marker = new google.maps.Marker({
           position: latLng,
-          map: map
+          map: map,
+          title: "hello, I'm number " + i,
+          id: prodId,
+          animation: google.maps.Animation.DROP,
         });
+        google.maps.event.addListener(marker, 'click', onMarkerClick);
       }
     }
+
+  }
+    //create markers for products
+
+
     google.maps.event.addDomListener(window, 'load', initialize);
   </script>
-</head>
-
-    <!-- /JS -->
-      </body>
+    <!-- JS moved to assets/javascript/products.js -->
+</body>
 </html>
