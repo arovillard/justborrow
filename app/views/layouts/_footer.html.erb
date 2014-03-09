@@ -24,7 +24,7 @@
     $( document ).ready(function() {
           // Drop down menu handler
           $('.dropdown-menu').find('form').click(function (e) {
-            e.preventDefault();
+            e.stopPropagation();
           });
     });
 // Google maps
