@@ -20,23 +20,45 @@
       </div>
     </div>
 
-    <!-- JS -->
-    <script>
-    $( document ).ready(function() {
+    <!-- JS moved to assets/javascript/products.js -->
+<script type="text/javascript">
+$( document ).ready(function() {
       // Drop down menu handler
       $('.dropdown-menu').find('form').click(function (e) {
         e.stopPropagation();
       });
 
+
     });
 
-    var handler = Gmaps.build('Google');
-    handler.buildMap({ internal: {id: 'multi_markers'}}, function(){
-      var markers = handler.addMarkers(<%=raw @hash.to_json %>);
-      handler.bounds.extendWith(markers);
-      handler.fitMapToBounds();
-    });
+      var map;
+      function initialize() {
+        var mapDiv = document.getElementById('map-canvas');
+        map = new google.maps.Map(mapDiv, {
+          center: new google.maps.LatLng(43.6517, -79.38729999999998),
+          zoom: 10,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+        });
+
+        google.maps.event.addListenerOnce(map, 'tilesloaded', addMarkers);
+
+      }
+
+      function addMarkers() {
+        for (var i = 0; i < (<%=raw @hash.to_json %>).length; i++) {
+          var latLng = new google.maps.LatLng((<%= raw @hash.to_json %>)[i][0], (<%= raw @hash.to_json %>)[i][1] );
+          var marker = new google.maps.Marker({
+            position: latLng,
+            map: map
+          });
+        }
+      }
+
+
+      google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+  </head>
+
     <!-- /JS -->
       </body>
 </html>
