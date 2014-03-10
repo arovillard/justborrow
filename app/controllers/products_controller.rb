@@ -1,15 +1,15 @@
 class ProductsController < ApplicationController
   before_filter :ensure_logged_in, :except => [:index,:show, :category_page]
   before_filter :find_product, :only => [:show, :edit, :update, :destroy]
+  before_filter :location,  :only => [:index, :category_page]
 
   def index
-
     if params[:tag]
-      @products = Product.all.tagged_with(params[:tag])
+      @products = Product.near([@location.latitude, @location.longitude], 100).tagged_with(params[:tag])
     elsif params[:search]
-      @products = Product.search(params[:search])
+      @products = Product.near([@location.latitude, @location.longitude], 100).search(params[:search])
     else
-     @products = Product.all
+     @products = Product.near([@location.latitude, @location.longitude], 100)
     end
     @hash = Gmaps4rails.build_markers(@products) do |product, marker|
       marker.lat product.latitude
@@ -32,8 +32,9 @@ class ProductsController < ApplicationController
   end
 
   def category_page
+    @user_location = request.location
     @category = Category.find(params[:category_id])
-    @category_products = @category.products
+    @category_products = @category.products.near([@location.latitude, @location.longitude], 100)
     @hash = Gmaps4rails.build_markers(@category_products) do |product, marker|
       marker.lat product.latitude
       marker.lng product.longitude
