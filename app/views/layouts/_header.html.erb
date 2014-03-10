@@ -104,9 +104,11 @@
           <div class="well well-sm">
             <form>
               <fieldset>
-                <input type="text" class="form-control" />
-                <small><a href="#" class="btn-advanced-search">Advanced</a></small>
-                <input type="submit" class="btn btn-danger btn-sm btn-search" value="Search" />
+                <%= form_tag(products_path, method: "get") do %>
+                <%= text_field_tag(:search," ",:class => "form-control") %>
+                  <small><a href="#" class="btn-advanced-search">Advanced</a></small>
+                  <%= button_tag("Search",:name => nil, :class=> "btn btn-danger btn-sm btn-search") %>
+                <% end %>
               </fieldset>
             </form>
           </div>

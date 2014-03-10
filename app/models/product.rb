@@ -9,10 +9,8 @@ class Product < ActiveRecord::Base
   has_many :product_images
   accepts_nested_attributes_for :product_images
 
-  #belongs_to :category
+  def self.search(search)
+    find(:all, :conditions => ["title like ? OR description like ? OR address like ?", "%#{search}%", "%#{search}%", "%#{search}%"])
+  end
 
-
-  #Create new model Categories
-  # Class Category < ActiveRecord::base
-    # has_many :products
 end

@@ -6,6 +6,8 @@ class ProductsController < ApplicationController
 
     if params[:tag]
       @products = Product.all.tagged_with(params[:tag])
+    elsif params[:search]
+      @products = Product.search(params[:search])
     else
      @products = Product.all
     end

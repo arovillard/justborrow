@@ -1,5 +1,6 @@
 Justborrowit::Application.routes.draw do
   root 'products#index'
+  get 'products/search' => 'products#search', as:'search'
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
   get 'category_page', to: 'products#category_page', as: :category_page
