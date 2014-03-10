@@ -73,11 +73,10 @@
 
       function handleNoGeolocation(errorFlag) {
         if (errorFlag == true) {
-          alert("Geolocation service failed.");
-          initialLocation = newyork;
+          initialLocation = new google.maps.LatLng(43.652527,-79.381961);
         } else {
-          alert("Your browser doesn't support geolocation. We've placed you in Siberia.");
-          initialLocation = siberia;
+          alert("Your browser doesn't support geolocation. We've placed you in Toronto.");
+          initialLocation = new google.maps.LatLng(43.652527,-79.381961);
         }
         map.setCenter(initialLocation);
       }

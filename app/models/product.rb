@@ -10,7 +10,14 @@ class Product < ActiveRecord::Base
   accepts_nested_attributes_for :product_images
 
   def self.search(search)
-    find(:all, :conditions => ["title like ? OR description like ? OR address like ?", "%#{search}%", "%#{search}%", "%#{search}%"])
+    search_array=[]
+    searchwords = search.split
+    searchwords.each do |word|
+     search_array += find(:all, :conditions => ["title like ? OR description like ? OR address like ?", "%#{word}%", "%#{word}%", "%#{word}%"])
+    end
+    search_array.uniq
   end
 
 end
+
+
