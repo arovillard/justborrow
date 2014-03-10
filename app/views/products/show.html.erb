@@ -63,7 +63,7 @@
                   </tr>
                   <tr>
                     <td>Price:</td>
-                    <td>$<%=@product.price%></td>
+                    <td>$<%=number_with_precision(@product.price, :precision => 2) %>/day</td>
                   </tr>
                 </tbody>
               </table>
