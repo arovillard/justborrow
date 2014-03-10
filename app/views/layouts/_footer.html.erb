@@ -34,7 +34,7 @@
     function initialize() {
       var myOptions = {
         center: initialLocation,
-        zoom: 11,
+        zoom: 9,
         mapTypeId: google.maps.MapTypeId.ROADMAP
       };
       var mapDiv = document.getElementById('map-canvas');
@@ -95,10 +95,14 @@
           id: prodId,
           animation: google.maps.Animation.DROP,
         });
+        // google.maps.event.addListener(marker, 'mouseout', function() {
+        //   console.log("hello")
+        //   infoWindow.close();
+        // });
         google.maps.event.addListener(marker, 'mouseover', onMarkerClick);
+
       }
     }
-
   }
     //create markers for products
 

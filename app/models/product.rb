@@ -3,7 +3,6 @@ class Product < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, :if => :address_changed?
   geocoded_by :ip_address
-  after_validation :geocode
   mount_uploader :image, ImageUploader
   belongs_to :lender, class_name: "User" #lender
   belongs_to :category

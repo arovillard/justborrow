@@ -5,11 +5,11 @@ class ProductsController < ApplicationController
 
   def index
     if params[:tag]
-      @products = Product.near([@location.latitude, @location.longitude], 100).tagged_with(params[:tag])
+      @products = Product.near([@location.latitude, @location.longitude], 25).tagged_with(params[:tag])
     elsif params[:search]
-      @products = Product.near([@location.latitude, @location.longitude], 100).search(params[:search])
+      @products = Product.near([@location.latitude, @location.longitude], 25).search(params[:search])
     else
-     @products = Product.near([@location.latitude, @location.longitude], 100)
+     @products = Product.near([@location.latitude, @location.longitude], 25)
     end
     @hash = Gmaps4rails.build_markers(@products) do |product, marker|
       marker.lat product.latitude
@@ -34,7 +34,7 @@ class ProductsController < ApplicationController
   def category_page
     @user_location = request.location
     @category = Category.find(params[:category_id])
-    @category_products = @category.products.near([@location.latitude, @location.longitude], 100)
+    @category_products = @category.products.near([@location.latitude, @location.longitude], 25)
     @hash = Gmaps4rails.build_markers(@category_products) do |product, marker|
       marker.lat product.latitude
       marker.lng product.longitude
@@ -87,7 +87,7 @@ class ProductsController < ApplicationController
             @product_image = @product.product_images.create!(:image => i, :product_id => @product.id)
           end
         end
-          format.html { redirect_to @product, notice: 'Product was successfully created.' }
+          format.html { redirect_to @product, notice: 'Product was successfully updated.' }
        else
          format.html { render action: 'edit' }
       end
