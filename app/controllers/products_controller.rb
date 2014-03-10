@@ -21,14 +21,23 @@ class ProductsController < ApplicationController
       !marker[:lat] || !marker[:lng]
     end
 
-    add_breadcrumb "Products", products_path
+    # add_breadcrumb "Products", products_path
   end
 
   def show
     @rental = Rental.new
     @product = Product.find(params[:id])
     @product_images = @product.product_images.all
-    add_breadcrumb 'products', product_path
+    @hash = Gmaps4rails.build_markers(@product) do |product, marker|
+      marker.lat product.latitude
+      marker.lng product.longitude
+      marker.json({:id => product.id})
+    end
+    # remove empty lat/lng pairs
+    @hash = @hash.reject do |marker|
+      !marker[:lat] || !marker[:lng]
+    end
+    # add_breadcrumb 'products', product_path
   end
 
   def category_page
@@ -44,14 +53,14 @@ class ProductsController < ApplicationController
     @hash = @hash.reject do |marker|
       !marker[:lat] || !marker[:lng]
     end
-  add_breadcrumb "Products", products_path
+  # add_breadcrumb "Products", products_path
   end
 
   def new
     @product = Product.new
     @categories = Category.all
     @product_image = @product.product_images.build
-    add_breadcrumb 'new product', new_product_path
+    # add_breadcrumb 'new product', new_product_path
   end
 
   def create
