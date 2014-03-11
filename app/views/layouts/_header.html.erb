@@ -105,9 +105,7 @@
             <form>
               <fieldset>
                 <%= form_tag(products_path, method: "get") do %>
-                <%= text_field_tag(:search," ",:class => "form-control") %>
-                  <small><a href="#" class="btn-advanced-search">Advanced</a></small>
-                  <%= button_tag("Search",:name => nil, :class=> "btn btn-danger btn-sm btn-search") %>
+                <%= text_field_tag(:search,"",:class => "form-control", :placeholder => "What are you looking for?") %> <%= button_tag("Search",:name => nil, :class=> "btn btn-danger btn-sm btn-search") %>
                 <% end %>
               </fieldset>
             </form>
