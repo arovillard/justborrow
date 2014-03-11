@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  before_filter :ensure_logged_in
 
   def index
     @product = Product.find(params[:product_id])

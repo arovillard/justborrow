@@ -1,7 +1,7 @@
   <hr>
   <% @messages.each do |message| %>
   <% if message.persisted? %>
-  <div class="panel">
+  <div class="messagepanel">
 
       <% if message.user_id == message.rental.product.lender_id %>
       <div class="panel-body lender">

@@ -1,5 +1,14 @@
-
 <div class="col-lg-9 content-right">
-<%= render 'newmessage' %>
-<%= render 'showmessages' %>
+  <% if current_user.id == @product.rentals.where({id: "#{params[:rental_id]}"}).first.borrower_id || current_user.id == @product.lender_id %>
+      <%= render 'newmessage' %>
+      <%= render 'showmessages' %>
+  <% else %>
+      <div class="panel panel-info">
+            <div class="panel-body">
+              <h1>Oops!</h1>
+              <p>It looks like you're trying to access the message page for this transaction. Only the lender or borrower are able to access this page.</p>
+            </div>
+          </div>
+        </div>
+  <% end %>
 </div>

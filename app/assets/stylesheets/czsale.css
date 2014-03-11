@@ -252,16 +252,29 @@ a.list-subgroup-item:hover, a.list-subgroup-item.active, a.list-subgroup-item.ac
   background-color: #D7DEA6;
   text-align: left;
   float: left;
-  width: 400px;
+  width: 85%;
   clear: both;
+  margin-bottom: 5px;
+  border-radius: 7px;
 }
 
 .borrower {
   background-color: #C8DDE6;
   text-align: right;
   float: right;
-  width: 400px;
+  width: 85%;
   clear: both;
+  margin-bottom: 5px;
+  border-radius: 7px;
+}
+
+.messagepanel {
+margin-bottom: 20px;
+background-color: #ffffff;
+border: 0px solid transparent;
+border-radius: 10px;
+-webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.0);
+box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
 }
 
 /*.showpage {

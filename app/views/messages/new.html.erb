@@ -1,6 +1,7 @@
 <div class="col-lg-9 content-right">
+   <% if current_user.id == @product.rentals.where({id: "#{params[:rental_id]}"}).first.borrower_id || current_user.id == @product.lender_id %>
   <h2>Rental Discussion</h2>
-  <p>Use the form below to register to communicate regarding your rental!</p>
+  <p>Use the form below to communicate with your lender or borrower regarding the rental!</p>
   <hr>
     <div class="panel panel-info">
       <div class="panel-heading">
@@ -20,7 +21,17 @@
       </div>
       <%= f.submit %>
     </div>
+  </div>
   <% end %>
+  <% else  %>
+
+        <div class="panel panel-info">
+            <div class="panel-body">
+              <h1>Oops!</h1>
+              <p>It looks like you're trying to access the message page for this transaction. Only the lender or borrower are able to access this page.</p>
+            </div>
+          </div>
+<% end %>
 </div>
 </div>
 
