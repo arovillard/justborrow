@@ -28,7 +28,7 @@ class RentalsController < ApplicationController
 
   private
   def rental_params
-    params.require(:rental).permit(:borrower_id, :product_id, :start_date, :end_date)
+    params.require(:rental).permit(:borrower_id, :product_id, :start_date, :end_date, :rental_detail)
   end
 
   def load_product

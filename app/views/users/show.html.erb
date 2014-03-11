@@ -1,6 +1,41 @@
-<h3>Products belonging to <%= @user.email %></h3>
-<ul >
-  <% @products.each do |product| %>
-    <%= render partial: 'products/product', object: product %>
-  <% end %>
-</ul>
+<div class="col-lg-9 content-right">
+  <h3>Lending request sent to <%= @user.email %></h3>
+    <div class="row selected-classifieds">
+       <ul >
+        <% @user.products.each do |product| %>
+          <% product.rentals.each do |request| %>
+            <div class="col-lg-3">
+              <div class="thumbnail">
+                <div class="caption">
+                  <p><strong>from:</strong><%= request.borrower.email %></p>
+                  <p><strong>Details:</strong><%= truncate(request.rental_detail, length: 150) %></p>
+                  <p><strong>Start-date:</strong><%= request.start_date %></p>
+                  <p><strong>Start-date:</strong><%= request.end_date %></p>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+    <h3>Borrowing requests sent from <%= @user.email %></h3>
+    <div class="row selected-classifieds">
+       <ul >
+        <% @user.rentals.each do |request| %>
+          <div class="col-lg-3">
+            <div class="thumbnail">
+              <div class="caption">
+                <p><strong>from:</strong><%= request.borrower.email %></p>
+                <p><strong>Details:</strong><%= truncate(request.rental_detail, length: 150) %></p>
+                <p><strong>Start-date:</strong><%= request.start_date %></p>
+                <p><strong>Start-date:</strong><%= request.end_date %></p>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
+
+

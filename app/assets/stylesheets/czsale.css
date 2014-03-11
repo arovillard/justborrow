@@ -264,6 +264,11 @@ a.list-subgroup-item:hover, a.list-subgroup-item.active, a.list-subgroup-item.ac
   clear: both;
 }
 
+.rental-detail {
+  width: 100%;
+  min-height: 100px;
+}
+
 /*.showpage {
   border: 1px #dddddd solid;
   border-radius: 4px;
