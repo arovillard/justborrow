@@ -16,11 +16,15 @@
     <div class = "field">
       <p>
         <%= f.label :start_date %><br/>
-        <%= f.date_field :start_date %>
+        <%= f.date_field :start_date,{ placeholder: "Email address", required: ""} %>
       </p>
       <p>
         <%= f.label :end_date %><br/>
-        <%= f.date_field :end_date %>
+        <%= f.date_field :end_date,{ placeholder: "Email address", required: ""} %>
+      </p>
+      <p>
+        <%= f.label :rental_detail, "Rental request details" %><br/>
+        <%= f.text_area :rental_detail,{:class => "rental-detail", placeholder: "ex. Pickup and drop off hour or any special request regarding this item", required: ""} %>
       </p>
       <%= f.hidden_field :borrower_id, :value => current_user.id %>
 
