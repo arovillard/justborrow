@@ -1,0 +1,26 @@
+<div class="col-lg-9 content-right">
+  <h2>Rental Discussion</h2>
+  <p>Use the form below to register to communicate regarding your rental!</p>
+  <hr>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Enter a new message</h3>
+      </div>
+      <div class="panel-body">
+        <%= form_for [@product, @rental, @message] do |f| %>
+                       <div class="form-group">
+                          <%= f.text_field :content, {class: 'form-control', id: "exampleInputEmail2", placeholder: "Enter your message here", required: ""}%>
+                        </div>
+      </div>
+    </div>
+    <div class="well">
+      <p>NOTICE:  When submitting a message your message becomes a permanent and unchangable part of this transaction.  Once submitted, messages cannot be changed or removed, under any circumstances.</p>
+      <div class="checkbox">
+        <label><input type="checkbox"> I agree to the <a href="#">Terms of Use</a></label>
+      </div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>
+</div>
+

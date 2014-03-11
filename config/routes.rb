@@ -11,7 +11,9 @@ Justborrowit::Application.routes.draw do
   resources :users
   resources :product_images
   resources :products do
-   resources :rentals
+   resources :rentals do
+    resources :messages, :only => [:new, :create, :index]
+    end
    resources :categories
   end
 

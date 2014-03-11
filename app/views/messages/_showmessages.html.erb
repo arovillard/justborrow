@@ -1,0 +1,17 @@
+  <hr>
+  <% @messages.each do |message| %>
+  <% if message.persisted? %>
+  <div class="panel panel-info">
+    <div class="panel-body">
+      <div class="form-group">
+       On <%= message.created_at %> <%= message.user.email %> said:<br>
+     </div>
+     <div class="form-group">
+      <%= message.content %><br>
+
+    </div>
+  </div>
+  </div>
+  <% end %>
+  <% end %>
+  </div>
