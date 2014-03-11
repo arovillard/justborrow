@@ -112,15 +112,41 @@
               </fieldset>
             </form>
           </div>
-          <h4>Categories</h4>
-
-          <div class="list-group categories">
-            <% @categories = Category.all %>
-            <% @categories.each do |c| %>
-              <%= link_to category_page_path + "/?category_id="+c.id.to_s, :class=> "list-group-item" do %>
-                <%= c.category_name %>
-                <%= content_tag :span, "", :class => "glyphicon glyphicon-chevron-right" %>
+          <div class="hidden-sm hidden-xs content-left">
+            <h4>Categories</h4>
+            <div class="list-group categories">
+              <% @categories = Category.all.sort_by!{ |e| e.category_name.downcase } %>
+              <% @categories.each do |c| %>
+                <%= link_to category_page_path + "/?category_id="+c.id.to_s, :class=> "list-group-item" do %>
+                  <%= c.category_name %>
+                  <%= content_tag :span, "", :class => "glyphicon glyphicon-chevron-right" %>
+                <% end %>
               <% end %>
-            <% end %>
-         </div>
+           </div>
+          </div>
+
+
+        <div class="panel-group visible-sm visible-xs" id="accordion">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                  Categories
+                </a>
+              </h4>
+            </div>
+            <div id="collapseOne" class="panel-collapse collapse">
+              <div class="list-group categories">
+                <% @categories = Category.all.sort_by!{ |e| e.category_name.downcase } %>
+                <% @categories.each do |c| %>
+                  <%= link_to category_page_path + "/?category_id="+c.id.to_s, :class=> "list-group-item" do %>
+                    <%= c.category_name %>
+                    <%= content_tag :span, "", :class => "glyphicon glyphicon-chevron-right" %>
+                  <% end %>
+                <% end %>
+               </div>
+            </div>
+          </div>
         </div>
+      </div>
+
