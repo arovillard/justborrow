@@ -3,12 +3,11 @@ class RentalsController < ApplicationController
   before_filter :ensure_logged_in
 
   def new
-    add_breadcrumb 'new rental', new_product_rental_path
+    # add_breadcrumb 'new rental', new_product_rental_path
   end
 
   def create
     @rental = @product.rentals.new(rental_params)
-
     if @rental.save
       redirect_to product_path(@product), notice: 'rental created!'
     else
@@ -17,11 +16,11 @@ class RentalsController < ApplicationController
   end
 
   def show
-    add_breadcrumb 'product rentals', product_rental_path
+    # add_breadcrumb 'product rentals', product_rental_path
   end
 
   def edit
-    add_breadcrumb 'edit rental', edit_product_rental_path
+    # add_breadcrumb 'edit rental', edit_product_rental_path
   end
 
   def update

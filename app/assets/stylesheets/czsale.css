@@ -248,6 +248,22 @@ a.list-subgroup-item:hover, a.list-subgroup-item.active, a.list-subgroup-item.ac
   margin: 0 0 5px 0;
 }
 
+.lender {
+  background-color: #D7DEA6;
+  text-align: left;
+  float: left;
+  width: 400px;
+  clear: both;
+}
+
+.borrower {
+  background-color: #C8DDE6;
+  text-align: right;
+  float: right;
+  width: 400px;
+  clear: both;
+}
+
 /*.showpage {
   border: 1px #dddddd solid;
   border-radius: 4px;

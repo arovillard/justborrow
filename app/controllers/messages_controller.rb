@@ -3,7 +3,7 @@ class MessagesController < ApplicationController
   def index
     @product = Product.find(params[:product_id])
     @rental = Rental.find(params[:rental_id])
-    @messages = @rental.messages
+    @messages = @rental.messages.all.reverse &:created_at
 
   end
 
