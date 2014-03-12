@@ -1,115 +1,103 @@
 <div class="col-lg-9 content-right">
   <h3>Lending request sent to <%= @user.email %></h3>
-<<<<<<< HEAD
-  <% @user.products.each do |product| %>
-  <% product.rentals.each do |rental| %>
-  <div class="panel panel-info">
-    <div class="col-sm-4"><strong>From: </strong><%= rental.borrower.email %></div>
-    <div class="col-sm-4"><strong>Details: </strong><%= truncate(rental.rental_detail, length: 150) %></div>
-    <div class="col-sm-4">
-      <strong>Dates: </strong><%= rental.start_date.strftime("%m/%d/%Y") %> -to- <%= rental.end_date.strftime("%m/%d/%Y") %><%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-      <%= hidden_field_tag 'rental[rental_approved]', 'true' %>
-      <%= submit_tag "Accept" %>
-      <% end %>
-
-    <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-    <%= hidden_field_tag 'rental[rental_approved]', 'false' %>
-    <%= submit_tag "Decline" %>
-    <% end %></div>
-  </div>
-  <% end %>
-  <% end %>
-</div>
-=======
-    <div class="row selected-classifieds">
-       <ul >
-        <% @user.products.each do |product| %>
-          <% product.rentals.sort_by(&:created_at).reverse.each do |rental| %>
-            <div class="col-lg-3">
-              <div class="thumbnail">
-                <div class="caption">
-                  <%= rental.id %>
-                  <p><strong>from:</strong><%= rental.borrower.email %></p>
-                  <p><strong>Details:</strong><%= truncate(rental.rental_detail, length: 150) %></p>
-                  <p><strong>Start-date:</strong><%= rental.start_date %></p>
-                  <p><strong>Start-date:</strong><%= rental.end_date %></p>
-                  <% if rental.borrower_acceptance != true %>
-                    <% if rental.rental_approved == nil %>
-                      <div>
-                        <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-                          <%= hidden_field_tag 'rental[rental_approved]', true %>
-                          <%= submit_tag "Accept" %>
-                        <% end %>
-                      </div>
-                      <div>
-                        <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-                          <%= hidden_field_tag 'rental[rental_approved]', false %>
-                          <%= submit_tag "Decline" %>
-                        <% end %>
-                      </div>
-                    <% else %>
-                      <div>
-                        <% if rental.rental_approved == true %>
-                          <p>Awaiting final approval from borrower</p>
-                        <% end %>
-                        <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-                          <%= hidden_field_tag 'rental[rental_approved]', nil %>
-                          <%= submit_tag "Change" %>
-                        <% end %>
-                      </div>
-                    <% end %>
-                  <% else %>
-                    <p>The transaction has been processed</p>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-
-      </ul>
->>>>>>> master
-    </div>
-    <h3>Borrowing requests sent from <%= @user.email %></h3>
-    <div class="row selected-classifieds">
-       <ul >
-        <% @user.rentals.sort_by(&:created_at).reverse.each do |rental| %>
-          <div class="col-lg-3">
-            <div class="thumbnail">
-              <div class="caption">
-                <%= rental.id %>
-                <p><strong>from:</strong><%= rental.borrower.email %></p>
-                <p><strong>Details:</strong><%= truncate(rental.rental_detail, length: 150) %></p>
-                <p><strong>Start-date:</strong><%= rental.start_date %></p>
-                <p><strong>Start-date:</strong><%= rental.end_date %></p>
-                <% if rental.rental_approved == true %>
-                  <% if rental.borrower_acceptance == nil %>
-                   <p>The lender has accepted your request, please accept to complete transaction</p>
-                    <div>
-                      <%= form_tag product_rental_path({:product_id => rental.product.id, :id => rental.id}), method: :patch do %>
-                        <%= hidden_field_tag 'rental[borrower_acceptance]', true %>
-                        <%= submit_tag "Accept" %>
-                      <% end %>
-                    </div>
-                    <div>
-                      <%= form_tag product_rental_path({:product_id => rental.product.id, :id => rental.id}), method: :patch do %>
-                        <%= hidden_field_tag 'rental[borrower_acceptance]', false %>
-                        <%= submit_tag "Decline" %>
-                      <% end %>
-                    </div>
-                  <% elsif rental.borrower_acceptance == true %>
-                    <p>Transaction processed, thanks for using JustBorrow.it</p>
-                  <% else %>
-                    <p>You have decliened this transaction</p>
-                  <% end %>
-                <% else %>
-                  <p>Transaction pending approval from lender</p>
+  <div class="table-responsive">
+    <table class="table">
+      <tbody>
+      <% @user.products.each do |product| %>
+      <% product.rentals.sort_by(&:created_at).reverse.each do |rental| %>
+      <tr>
+        <td style= "width: 20%">
+          <strong>From:<br>
+          </strong><%= rental.borrower.email %>
+        </td>
+        <td style = "width: 20%">
+          <strong>Start-date:</strong><%= rental.start_date.to_date %><br>
+          <strong>End-date:</strong><%= rental.end_date.to_date %>
+        </td>
+        <td>
+          <strong>Details: </strong><%= truncate(rental.rental_detail, length: 150) %>
+        </td>
+        <td>
+          <% if rental.borrower_acceptance != true %>
+            <% if rental.rental_approved == nil %>
+              <div>
+                <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
+                  <%= hidden_field_tag 'rental[rental_approved]', true %>
+                  <%= submit_tag "Accept", :class => "btn btn-success pull-left" %>
                 <% end %>
               </div>
-            </div>
-          </div>
-        <% end %>
-      </ul>
+              <div>
+                <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
+                  <%= hidden_field_tag 'rental[rental_approved]', false %>
+                  <%= submit_tag "Decline", :class => "btn btn-danger pull-left clearfix" %>
+                <% end %>
+              </div>
+            <% else %>
+              <div>
+                <% if rental.rental_approved == true %>
+                  <p>Awaiting final approval from borrower</p>
+                <% end %>
+                <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
+                  <%= hidden_field_tag 'rental[rental_approved]', nil %>
+                  <%= submit_tag "Change", :class => "btn btn-success pull-left clearfix" %>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            <p>The transaction has been processed</p>
+          <% end %>
+          </td>
+      </tr>
+      <% end %>
+      <% end %>
+      </tbody>
+      </table>
+      </div>
+
+      <h3>Borrowing requests sent from <%= @user.email %></h3>
+      <div class="table-responsive">
+        <table class="table">
+          <tbody>
+            <% @user.rentals.sort_by(&:created_at).reverse.each do |rental| %>
+            <tr>
+              <td style= "width: 20%">
+                <strong>From:<br>
+                </strong><%= rental.borrower.email %>
+              </td>
+              <td style = "width: 20%">
+                <strong>Start-date:</strong><%= rental.start_date.to_date %><br>
+                <strong>End-date:</strong><%= rental.end_date.to_date %>
+              </td>
+              <td>
+                <strong>Details: </strong><%= truncate(rental.rental_detail, length: 150) %>
+              </td>
+              <td>
+              <% if rental.rental_approved == true %>
+                <% if rental.borrower_acceptance == nil %>
+                 <p>The lender has accepted your request, please accept to complete transaction</p>
+                  <div>
+                    <%= form_tag product_rental_path({:product_id => rental.product.id, :id => rental.id}), method: :patch do %>
+                      <%= hidden_field_tag 'rental[borrower_acceptance]', true %>
+                      <%= submit_tag "Accept",:class => "btn btn-success pull-left" %>
+                    <% end %>
+                  </div>
+                  <div>
+                    <%= form_tag product_rental_path({:product_id => rental.product.id, :id => rental.id}), method: :patch do %>
+                      <%= hidden_field_tag 'rental[borrower_acceptance]', false %>
+                      <%= submit_tag "Decline", :class => "btn btn-danger pull-left" %>
+                    <% end %>
+                  </div>
+                <% elsif rental.borrower_acceptance == true %>
+                  <p>Transaction processed</p>
+                <% else %>
+                  <p>You have decliened this transaction</p>
+                <% end %>
+              <% else %>
+                <p>Transaction pending approval from lender</p>
+              <% end %>
+            </td>
+          <% end %>
+        </table>
     </div>
   </div>
 </div>
