@@ -24,11 +24,22 @@ class RentalsController < ApplicationController
   end
 
   def update
+    @rental = Rental.find(params[:id])
+    if @rental.update(rental_params)
+      redirect_to user_path(current_user)
+    else
+      render "edit"
+    end
+end
+
+ def update_rental
+    @request = Rental.find(params[:request_id])
+    @request.update_attributes!(:rental_approved => true)
   end
 
   private
   def rental_params
-    params.require(:rental).permit(:borrower_id, :product_id, :start_date, :end_date, :rental_detail)
+    params.require(:rental).permit(:borrower_id, :product_id, :start_date, :end_date, :rental_detail, :rental_approved)
   end
 
   def load_product

@@ -1,5 +1,6 @@
 Justborrowit::Application.routes.draw do
   root 'products#index'
+  post 'rentals/:id' => 'rentals#update_rental', as:'update_rental'
   get 'products/search' => 'products#search', as:'search'
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
