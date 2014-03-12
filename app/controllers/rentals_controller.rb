@@ -39,7 +39,7 @@ end
 
   private
   def rental_params
-    params.require(:rental).permit(:borrower_id, :product_id, :start_date, :end_date, :rental_detail, :rental_approved)
+    params.require(:rental).permit(:borrower_id, :product_id, :start_date, :end_date, :rental_detail, :rental_approved, :borrower_acceptance)
   end
 
   def load_product
