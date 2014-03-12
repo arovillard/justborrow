@@ -1,33 +1,24 @@
 <div class="col-lg-9 content-right">
   <h3>Lending request sent to <%= @user.email %></h3>
-    <div class="row selected-classifieds">
-       <ul >
-        <% @user.products.each do |product| %>
-          <% product.rentals.each do |rental| %>
-            <div class="col-lg-3">
-              <div class="thumbnail">
-                <div class="caption">
-                  <p><strong>from:</strong><%= rental.borrower.email %></p>
-                  <p><strong>Details:</strong><%= truncate(rental.rental_detail, length: 150) %></p>
-                  <p><strong>Start-date:</strong><%= rental.start_date %></p>
-                  <p><strong>Start-date:</strong><%= rental.end_date %></p>
-                  <div>
-                    <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-                      <%= hidden_field_tag 'rental[rental_approved]', 'true' %>
-                      <%= submit_tag "Accept" %>
-                    <% end %>
-                  </div>
-                  <div>
-                    <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-                      <%= hidden_field_tag 'rental[rental_approved]', 'false' %>
-                      <%= submit_tag "Decline" %>
-                    <% end %>
-                  </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
-      </ul>
+  <% @user.products.each do |product| %>
+  <% product.rentals.each do |rental| %>
+  <div class="panel panel-info">
+    <div class="col-sm-4"><strong>From: </strong><%= rental.borrower.email %></div>
+    <div class="col-sm-4"><strong>Details: </strong><%= truncate(rental.rental_detail, length: 150) %></div>
+    <div class="col-sm-4">
+      <strong>Dates: </strong><%= rental.start_date.strftime("%m/%d/%Y") %> -to- <%= rental.end_date.strftime("%m/%d/%Y") %><%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
+      <%= hidden_field_tag 'rental[rental_approved]', 'true' %>
+      <%= submit_tag "Accept" %>
+      <% end %>
+
+    <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
+    <%= hidden_field_tag 'rental[rental_approved]', 'false' %>
+    <%= submit_tag "Decline" %>
+    <% end %></div>
+  </div>
+  <% end %>
+  <% end %>
+</div>
     </div>
     <h3>Borrowing requests sent from <%= @user.email %></h3>
     <div class="row selected-classifieds">
