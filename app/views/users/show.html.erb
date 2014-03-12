@@ -57,8 +57,8 @@
                    <p>The lender has accepted your request, please accept to complete transaction</p>
                     <div>
                       <%= form_tag rental_path(rental), method: :patch, :html => {:class => "form-control"} do %>
-                        <%= button_tag "Accept", :name => 'rental[rental_approved]', :value => 'true' %>
-                        <%= button_tag "Decline", :name => 'rental[rental_approved]', :value => 'false' %>
+                        <%= button_tag "Accept", :name => 'rental[borrower_acceptance]', :value => 'true' %>
+                        <%= button_tag "Decline", :name => 'rental[borrower_acceptance]', :value => 'false' %>
                       <% end %>
                     </div>
                   <% elsif rental.borrower_acceptance == true %>
