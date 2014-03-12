@@ -7,11 +7,18 @@ class RentalsController < ApplicationController
   end
 
   def create
-    @rental = @product.rentals.new(rental_params)
-    if @rental.save
-      redirect_to product_path(@product), notice: 'rental created!'
+    check_availability
+    if @available == "yes"
+      @rental = @product.rentals.new(rental_params)
+      if @rental.save
+        flash[:notice] = "Your rental request has been sent, check your transactions for status update"
+        redirect_to product_path(@product)
+      else
+        render "edit"
+      end
     else
-      redirect_to product_path(@product), notice: "something went wrong"
+      flash[:notice] = "The item is not available for the selecte period of time, please choose different dates"
+      redirect_to product_path(@product)
     end
   end
 
@@ -39,7 +46,7 @@ end
 
   private
   def rental_params
-    params.require(:rental).permit(:borrower_id, :product_id, :start_date, :end_date, :rental_detail, :rental_approved)
+    params.require(:rental).permit(:borrower_id, :product_id, :start_date, :end_date, :rental_detail, :rental_approved, :borrower_acceptance)
   end
 
   def load_product
