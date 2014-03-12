@@ -2,19 +2,18 @@
   <h3>Lending request sent to <%= @user.email %></h3>
   <% @user.products.each do |product| %>
   <% product.rentals.each do |rental| %>
-  <div class="panel panel-info">
+  <div class="panel panel-info row">
     <div class="col-sm-4"><strong>From: </strong><%= rental.borrower.email %></div>
     <div class="col-sm-4"><strong>Details: </strong><%= truncate(rental.rental_detail, length: 150) %></div>
     <div class="col-sm-4">
-      <strong>Dates: </strong><%= rental.start_date.strftime("%m/%d/%Y") %> -to- <%= rental.end_date.strftime("%m/%d/%Y") %><%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-      <%= hidden_field_tag 'rental[rental_approved]', 'true' %>
-      <%= submit_tag "Accept" %>
-      <% end %>
+      <strong>Dates: </strong><%= rental.start_date.strftime("%m/%d/%Y") %> -to- <%= rental.end_date.strftime("%m/%d/%Y") %>
 
-    <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-    <%= hidden_field_tag 'rental[rental_approved]', 'false' %>
-    <%= submit_tag "Decline" %>
-    <% end %></div>
+      <%= form_tag rental_path(rental), method: :patch, :html => {:class => "form-control"} do %>
+        <%= button_tag "Accept", :name => 'rental[rental_approved]', :value => 'true' %>
+        <%= button_tag "Decline", :name => 'rental[rental_approved]', :value => 'false' %>
+      <% end %>
+    </div>
+
   </div>
   <% end %>
   <% end %>
