@@ -1,5 +1,5 @@
 class RentalsController < ApplicationController
-  before_filter :load_product
+  before_filter :load_product, only: [:index, :create, :new]
   before_filter :ensure_logged_in
 
   def new
@@ -30,11 +30,6 @@ class RentalsController < ApplicationController
     else
       render "edit"
     end
-end
-
- def update_rental
-    @request = Rental.find(params[:request_id])
-    @request.update_attributes!(:rental_approved => true)
   end
 
   private
