@@ -3,7 +3,7 @@
     <div class="row selected-classifieds">
        <ul >
         <% @user.products.each do |product| %>
-          <% product.rentals.each do |rental| %>
+          <% product.rentals.sort_by(&:created_at).reverse.each do |rental| %>
             <div class="col-lg-3">
               <div class="thumbnail">
                 <div class="caption">
@@ -51,7 +51,7 @@
     <h3>Borrowing requests sent from <%= @user.email %></h3>
     <div class="row selected-classifieds">
        <ul >
-        <% @user.rentals.each do |rental| %>
+        <% @user.rentals.sort_by(&:created_at).reverse.each do |rental| %>
           <div class="col-lg-3">
             <div class="thumbnail">
               <div class="caption">

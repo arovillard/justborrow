@@ -1,111 +1,118 @@
 <div class="col-lg-9 content-right showpage">
-          <h2><%=@product.title%></h2>
-          <%= link_to 'Edit', edit_product_path(@product) %> |
-          <%= link_to 'Delete', product_path(@product), :method => :delete %>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="row">
-                <div class="col-md-12" id="slider">
-                  <div class="col-md-12" id="carousel-bounding-box" style="padding: 0;">
-                    <div id="detailCarousel" class="carousel slide">
-                      <div class="carousel-inner">
-
-                        <% count = 0 %>
-                        <% @product_images.each do |p| %>
-                          <% if count == 0 %>
-                            <div class="active item" data-slide-number="<%= count %>">
-                              <%= image_tag p.image_url, :class => "img-responsive" %>
-                            </div>
-                            <% count += 1 %>
-                          <% else %>
-                            <div class="item" data-slide-number="<%= count %>">
-                              <%= image_tag p.image_url, :class => "img-responsive" %>
-                            </div>
-                          <% end %>
-                        <% end %>
-                      </div>
-                      <a class="carousel-control left" href="#detailCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                      <a class="carousel-control right" href="#detailCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+  <h2><%=@product.title%></h2>
+  <%= link_to 'Edit', edit_product_path(@product) %> |
+  <%= link_to 'Delete', product_path(@product), :method => :delete %>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-12" id="slider">
+          <div class="col-md-12" id="carousel-bounding-box" style="padding: 0;">
+            <div id="detailCarousel" class="carousel slide">
+              <div class="carousel-inner">
+                <% count = 0 %>
+                <% @product_images.each do |p| %>
+                  <% if count == 0 %>
+                    <div class="active item" data-slide-number="<%= count %>">
+                      <%= image_tag p.image_url, :class => "img-responsive" %>
                     </div>
-                  </div>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
-                  <ul class="list-inline">
-                    <% count1 = 0 %>
-                    <% @product_images.each do |p| %>
-                      <% if count1 == 0 %>
-                        <li><a id="carousel-selector-<%= count1 %>" class=""><%= image_tag p.image_url(:thumb), :class => "img-responsive" %></a></li>
-                      <% else %>
-                        <li><a id="carousel-selector-<%= count1 %>"><%= image_tag p.image_url(:thumb), :class => "img-responsive" %></a></li>
-                      <% end %>
-                        <% count1 += 1 %>
-                    <% end %>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-12">
-                <h4>Description</h4>
-                <p style="text-align: justify;"><%=@product.description%></p>
-              </div>
-              <div class="col-md-12">
-              <h4>Send message to seller</h4>
-              <div class="panel panel-default">
-                <div class="panel-body">
-                  <form action="#" method="POST">
-                    <div class="form-group">
-                      <label for="InputEmail">Email address</label>
-                      <input type="email" class="form-control" id="InputEmail" placeholder="Enter your email">
+                    <% count += 1 %>
+                  <% else %>
+                    <div class="item" data-slide-number="<%= count %>">
+                      <%= image_tag p.image_url, :class => "img-responsive" %>
                     </div>
-                    <div class="form-group">
-                      <label for="InputText">Your text</label>
-                      <textarea class="form-control" id="InputText" name="message" placeholder="Type in your message" rows="5" style="margin-bottom:10px;"></textarea>
-                    </div>
-                    <button class="btn btn-info" type="submit">Send</button>
-                  </form>
-                </div>
+                  <% end %>
+                <% end %>
               </div>
+              <a class="carousel-control left" href="#detailCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+              <a class="carousel-control right" href="#detailCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
-          </div>
-            <div class="col-md-4">
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="well">
-                    <div class="row">
-                      <div class="col-sm-12">
-                        <%= render 'rentalform' %>
-                        <table class="table table-condensed table-hover">
-                          <thead>
-                            <th colspan="2">Details:</th>
-                          </thead>
-                          <tbody style="font-size: 12px;">
-                            <tr>
-                              <td>Product ID:</td>
-                              <td><%=@product.id%></td>
-                            </tr>
-                            <tr>
-                              <td>Price:</td>
-                              <td>$<%=number_with_precision(@product.price, :precision => 2) %>/day</td>
-                            </tr>
-                          </tbody>
-                        </table>
-                        <strong>Seller : </strong><a href="#"><%= @product.lender.email %></a><br>
-                        <!-- @product.category.category_name -->
-                        <small><b>Tags:</b> <%= raw @product.tag_list.map {|t| link_to t, tag_path(t)}.join(",  ") %></small><br>
-                        <small>Rating: <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star-empty"></span></small><br />
-                        <small>Location: <cite title="Prague, Czech Republic">Prague, Czech Republic <span class="glyphicon glyphicon-map-marker"></span></cite></small><br />
-                        <div id="mapbox">
-                          <div id="map-canvas" style="width: auto; height: 200px"></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <hr>
           </div>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12 hidden-sm hidden-xs" id="slider-thumbs">
+          <ul class="list-inline">
+            <% count1 = 0 %>
+            <% @product_images.each do |p| %>
+              <% if count1 == 0 %>
+                <li><a id="carousel-selector-<%= count1 %>" class=""><%= image_tag p.image_url(:thumb), :class => "img-responsive" %></a></li>
+              <% else %>
+                <li><a id="carousel-selector-<%= count1 %>"><%= image_tag p.image_url(:thumb), :class => "img-responsive" %></a></li>
+              <% end %>
+                <% count1 += 1 %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <h4>Description</h4>
+        <p style="text-align: justify;"><%=@product.description%></p>
+      </div>
+      <div class="col-md-12">
+      <h4>Send message to seller</h4>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <form action="#" method="POST">
+            <div class="form-group">
+              <label for="InputEmail">Email address</label>
+              <input type="email" class="form-control" id="InputEmail" placeholder="Enter your email">
+            </div>
+            <div class="form-group">
+              <label for="InputText">Your text</label>
+              <textarea class="form-control" id="InputText" name="message" placeholder="Type in your message" rows="5" style="margin-bottom:10px;"></textarea>
+            </div>
+            <button class="btn btn-info" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="col-md-4">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="well">
+            <div class="row">
+              <div class="col-sm-12">
+                <section class="alerts">
+                  <% if flash[:notice] %>
+                    <p class ="alert" id="notice"><%= flash[:notice] %></p>
+                  <% end %>
+                  <% if flash[:alert] %>
+                    <p class="alert" id="alert"><%= flash[:alert] %></p>
+                  <% end %>
+                </section>
+                <%= render 'rentalform' %>
+                <table class="table table-condensed table-hover">
+                  <thead>
+                    <th colspan="2">Details:</th>
+                  </thead>
+                  <tbody style="font-size: 12px;">
+                    <tr>
+                      <td>Product ID:</td>
+                      <td><%=@product.id%></td>
+                    </tr>
+                    <tr>
+                      <td>Price:</td>
+                      <td>$<%=number_with_precision(@product.price, :precision => 2) %>/day</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <strong>Seller : </strong><a href="#"><%= @product.lender.email %></a><br>
+                <!-- @product.category.category_name -->
+                <small><b>Tags:</b> <%= raw @product.tag_list.map {|t| link_to t, tag_path(t)}.join(",  ") %></small><br>
+                <small>Rating: <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star-empty"></span></small><br />
+                <small>Location: <cite title="Prague, Czech Republic">Prague, Czech Republic <span class="glyphicon glyphicon-map-marker"></span></cite></small><br />
+                <div id="mapbox">
+                  <div id="map-canvas" style="width: auto; height: 200px"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <hr>
+  </div>
+  </div>
+  </div>
