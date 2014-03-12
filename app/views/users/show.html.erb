@@ -3,15 +3,26 @@
     <div class="row selected-classifieds">
        <ul >
         <% @user.products.each do |product| %>
-          <% product.rentals.each do |request| %>
+          <% product.rentals.each do |rental| %>
             <div class="col-lg-3">
               <div class="thumbnail">
                 <div class="caption">
-                  <p><strong>from:</strong><%= request.borrower.email %></p>
-                  <p><strong>Details:</strong><%= truncate(request.rental_detail, length: 150) %></p>
-                  <p><strong>Start-date:</strong><%= request.start_date %></p>
-                  <p><strong>Start-date:</strong><%= request.end_date %></p>
-                </div>
+                  <p><strong>from:</strong><%= rental.borrower.email %></p>
+                  <p><strong>Details:</strong><%= truncate(rental.rental_detail, length: 150) %></p>
+                  <p><strong>Start-date:</strong><%= rental.start_date %></p>
+                  <p><strong>Start-date:</strong><%= rental.end_date %></p>
+                  <div>
+                    <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
+                      <%= hidden_field_tag 'rental[rental_approved]', 'true' %>
+                      <%= submit_tag "Accept" %>
+                    <% end %>
+                  </div>
+                  <div>
+                    <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
+                      <%= hidden_field_tag 'rental[rental_approved]', 'false' %>
+                      <%= submit_tag "Decline" %>
+                    <% end %>
+                  </div>
               </div>
             </div>
           <% end %>
