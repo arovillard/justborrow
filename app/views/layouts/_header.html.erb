@@ -116,15 +116,13 @@
             <div class="list-group categories">
               <% @categories = Category.all.sort_by!{ |e| e.category_name.downcase } %>
               <% @categories.each do |c| %>
-                <%= link_to category_page_path + "/?category_id="+c.id.to_s, :class=> "list-group-item" do %>
+                <%= link_to category_path(c), :class=> "list-group-item" do %>
                   <%= c.category_name %>
                   <%= content_tag :span, "", :class => "glyphicon glyphicon-chevron-right" %>
                 <% end %>
               <% end %>
            </div>
           </div>
-
-
         <div class="panel-group visible-sm visible-xs" id="accordion">
           <div class="panel panel-default">
             <div class="panel-heading">
@@ -138,7 +136,7 @@
               <div class="list-group categories">
                 <% @categories = Category.all.sort_by!{ |e| e.category_name.downcase } %>
                 <% @categories.each do |c| %>
-                  <%= link_to category_page_path + "/?category_id="+c.id.to_s, :class=> "list-group-item" do %>
+                  <%= link_to category_path(c), :class=> "list-group-item" do %>
                     <%= c.category_name %>
                     <%= content_tag :span, "", :class => "glyphicon glyphicon-chevron-right" %>
                   <% end %>

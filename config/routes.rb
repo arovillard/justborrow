@@ -4,7 +4,6 @@ Justborrowit::Application.routes.draw do
   get 'products/search' => 'products#search', as:'search'
   get "logout" => "sessions#destroy", :as => "logout"
   get "login" => "sessions#new", :as => "login"
-  get 'category_page', to: 'products#category_page', as: :category_page
   get 'tags/:tag', to: 'products#index', as: :tag
   get "signup" => "users#new", :as => "signup"
 
@@ -15,8 +14,9 @@ Justborrowit::Application.routes.draw do
    resources :rentals do
     resources :messages, :only => [:new, :create, :index]
     end
-   resources :categories
   end
+
+  resources :categories
 
   get 'help' => 'pages#help'
   get 'terms' => 'pages#terms'

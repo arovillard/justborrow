@@ -1,0 +1,31 @@
+<div class="col-lg-9 content-right">
+  <h4>Items near you!</h4>
+  <div id="mapbox">
+    <div id="map-canvas" style='width: max; height: 400px;'></div>
+  </div>
+  <h4>Category: <%= @category.category_name %></h4>
+  <div class="row selected-classifieds">
+    <% @products.each do |category_product| %>
+      <div class="col-lg-3">
+        <div class="thumbnail" id="id<%= category_product.id %>">
+          <% if category_product.product_images.first %>
+            <%= image_tag category_product.product_images.first.image_url(:thumb) %>
+          <% else %>
+            <img src="http://placehold.it/800x600/e0e0e0" />
+          <% end %>
+          <div class="caption">
+            <%= link_to( product_path(category_product) ) do %>
+              <p><strong>$<%= number_with_precision(category_product.price, :precision => 2) %>/day</strong></p>
+              <strong><%= category_product.title %></strong></br>
+              <small><%= truncate(category_product.description, length: 60) %></small></br>
+            <% end %>
+            <small><b>Category:</b> <%= category_product.category.category_name %></small><br>
+            <small><b>Tags:</b> <%= raw category_product.tag_list.map {|t| link_to t, tag_path(t)}.join(",  ") %></small>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+</div>
+

@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
-  before_filter :ensure_logged_in, :except => [:index,:show, :category_page]
+  before_filter :ensure_logged_in, :except => [:index,:show]
   before_filter :find_product, :only => [:show, :edit, :update, :destroy]
-  before_filter :location,  :only => [:index, :category_page]
+  before_filter :location,  :only => [:index]
 
   def index
     if params[:tag]
@@ -38,22 +38,6 @@ class ProductsController < ApplicationController
       !marker[:lat] || !marker[:lng]
     end
     # add_breadcrumb 'products', product_path
-  end
-
-  def category_page
-    @user_location = request.location
-    @category = Category.find(params[:category_id])
-    @category_products = @category.products.near([@location.latitude, @location.longitude], 25)
-    @hash = Gmaps4rails.build_markers(@category_products) do |product, marker|
-      marker.lat product.latitude
-      marker.lng product.longitude
-      marker.json({:id => product.id})
-    end
-    # remove empty lat/lng pairs
-    @hash = @hash.reject do |marker|
-      !marker[:lat] || !marker[:lng]
-    end
-  # add_breadcrumb "Products", products_path
   end
 
   def new
