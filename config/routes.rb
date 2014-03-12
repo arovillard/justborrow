@@ -11,11 +11,11 @@ Justborrowit::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   resources :users
   resources :product_images
-  resources :products do
-   resources :rentals do
-    resources :messages, :only => [:new, :create, :index]
+  resources :products, :shallow => true do
+    resources :rentals do
+      resources :messages, :only => [:new, :create, :index]
     end
-   resources :categories
+    resources :categories
   end
 
   get 'help' => 'pages#help'

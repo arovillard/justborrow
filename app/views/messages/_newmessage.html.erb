@@ -6,7 +6,7 @@
         <h3 class="panel-title">Enter a new message</h3>
       </div>
       <div class="panel-body">
-        <%= form_for [@product, @rental, @rental.messages.new] do |f| %>
+        <%= form_for [@rental, @rental.messages.new] do |f| %>
                        <div class="form-group">
                           <%= f.text_field :content, {class: 'form-control', id: "exampleInputEmail2", placeholder: "Enter your message here", required: ""}%>
                         </div>

@@ -15,25 +15,18 @@
                   <% if rental.borrower_acceptance != true %>
                     <% if rental.rental_approved == nil %>
                       <div>
-                        <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-                          <%= hidden_field_tag 'rental[rental_approved]', true %>
-                          <%= submit_tag "Accept" %>
-                        <% end %>
-                      </div>
-                      <div>
-                        <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-                          <%= hidden_field_tag 'rental[rental_approved]', false %>
-                          <%= submit_tag "Decline" %>
-                        <% end %>
+                       <%= form_tag rental_path(rental), method: :patch, :html => {:class => "form-control"} do %>
+                        <%= button_tag "Accept", :name => 'rental[rental_approved]', :value => 'true' %>
+                        <%= button_tag "Decline", :name => 'rental[rental_approved]', :value => 'false' %>
+                      <% end %>
                       </div>
                     <% else %>
                       <div>
                         <% if rental.rental_approved == true %>
                           <p>Awaiting final approval from borrower</p>
                         <% end %>
-                        <%= form_tag product_rental_path({:product_id => product.id, :id => rental.id}), method: :patch do %>
-                          <%= hidden_field_tag 'rental[rental_approved]', nil %>
-                          <%= submit_tag "Change" %>
+                        <%= form_tag rental_path(rental), method: :patch, :html => {:class => "form-control"} do %>
+                         <%= button_tag "Change", :name => 'rental[rental_approved]', :value => nil %>
                         <% end %>
                       </div>
                     <% end %>
@@ -45,7 +38,6 @@
             </div>
           <% end %>
         <% end %>
-
       </ul>
     </div>
     <h3>Borrowing requests sent from <%= @user.email %></h3>
@@ -64,15 +56,9 @@
                   <% if rental.borrower_acceptance == nil %>
                    <p>The lender has accepted your request, please accept to complete transaction</p>
                     <div>
-                      <%= form_tag product_rental_path({:product_id => rental.product.id, :id => rental.id}), method: :patch do %>
-                        <%= hidden_field_tag 'rental[borrower_acceptance]', true %>
-                        <%= submit_tag "Accept" %>
-                      <% end %>
-                    </div>
-                    <div>
-                      <%= form_tag product_rental_path({:product_id => rental.product.id, :id => rental.id}), method: :patch do %>
-                        <%= hidden_field_tag 'rental[borrower_acceptance]', false %>
-                        <%= submit_tag "Decline" %>
+                      <%= form_tag rental_path(rental), method: :patch, :html => {:class => "form-control"} do %>
+                        <%= button_tag "Accept", :name => 'rental[rental_approved]', :value => 'true' %>
+                        <%= button_tag "Decline", :name => 'rental[rental_approved]', :value => 'false' %>
                       <% end %>
                     </div>
                   <% elsif rental.borrower_acceptance == true %>
