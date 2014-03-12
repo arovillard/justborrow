@@ -90,7 +90,7 @@
                             </tr>
                           </tbody>
                         </table>
-                        <strong>Seller : </strong><a href="#"><%= @product.lender.id %></a><br>
+                        <strong>Seller : </strong><a href="#"><%= @product.lender.email %></a><br>
                         <!-- @product.category.category_name -->
                         <small><b>Tags:</b> <%= raw @product.tag_list.map {|t| link_to t, tag_path(t)}.join(",  ") %></small><br>
                         <small>Rating: <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star"></span> <span class="glyphicon glyphicon-star-empty"></span></small><br />

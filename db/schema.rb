@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140311190155) do
+ActiveRecord::Schema.define(version: 20140312041409) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,7 @@ ActiveRecord::Schema.define(version: 20140311190155) do
     t.datetime "end_date"
     t.string   "rental_detail"
     t.boolean  "rental_approved"
+    t.boolean  "borrower_acceptance"
   end
 
   add_index "rentals", ["borrower_id"], name: "index_rentals_on_borrower_id", using: :btree
