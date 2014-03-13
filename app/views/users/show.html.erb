@@ -54,7 +54,7 @@
           <% if rental.borrower_acceptance == nil %>
             <div>
               <%= form_tag rental_path(rental), method: :patch, :html => {:class => "form-control"} do %>
-              <%= button_tag "Borrow.It!!", :name => 'rental[borrower_acceptance]', :value => 'true', :class => 'btn btn-success' %>
+              <%= button_tag "Borrow It", :name => 'rental[borrower_acceptance]', :value => 'true', :class => 'btn btn-success' %>
               <%= button_tag "Decline", :name => 'rental[borrower_acceptance]', :value => 'false', :class => 'btn btn-danger' %>
               <% end %>
             </div>

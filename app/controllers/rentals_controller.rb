@@ -2,9 +2,6 @@ class RentalsController < ApplicationController
   before_filter :load_product, only: [:index, :create, :new]
   before_filter :ensure_logged_in
 
-  def new
-    # add_breadcrumb 'new rental', new_product_rental_path
-  end
 
   def create
     check_availability
@@ -26,10 +23,6 @@ class RentalsController < ApplicationController
     @rental = Rental.find(params[:id])
     @messages = @rental.messages.sort_by(&:created_at).reverse
     # add_breadcrumb 'product rentals', product_rental_path
-  end
-
-  def edit
-    # add_breadcrumb 'edit rental', edit_product_rental_path
   end
 
   def update

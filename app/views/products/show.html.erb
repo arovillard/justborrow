@@ -43,14 +43,14 @@
       </div>
       <div class="col-md-12">
         <div class="row">
-          <div class="col-xs-12 col-lg-6 text-left hidden-md hidden-lg">
+          <div class="col-xs-12 col-lg-10 text-left hidden-md hidden-lg">
             <%= link_to 'Edit', edit_product_path(@product) %> |
             <%= link_to 'Delete', product_path(@product), :method => :delete %>
           </div>
-          <div class="col-xs-12 col-lg-6 show-product-title ">
+          <div class="col-xs-12 col-lg-9 show-product-title ">
             <h2><%=@product.title%></h2>
           </div>
-          <div class="col-xs-12 col-lg-6 text-right hidden-xs hidden-sm">
+          <div class="col-xs-12 col-lg-3 text-right hidden-xs hidden-sm">
             <%= link_to 'Edit', edit_product_path(@product) %> |
             <%= link_to 'Delete', product_path(@product), :method => :delete %>
           </div>

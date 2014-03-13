@@ -43,7 +43,7 @@ class ProductImagesController < ApplicationController
   def update
     respond_to do |format|
       if @product_image.update(product_image_params)
-        format.html { redirect_to @product_image, notice: 'Product image was successfully updated.' }
+        format.html { redirect_to edit_product_path(@product_image), notice: 'Product image was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
