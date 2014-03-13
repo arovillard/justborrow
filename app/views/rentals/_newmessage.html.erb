@@ -1,0 +1,17 @@
+  <h2>Rental Discussion</h2>
+  <p>Use the form below to communicate with your lender or borrower regarding the rental!</p>
+  <hr>
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title">Enter a new message</h3>
+      </div>
+      <div class="panel-body">
+        <%= form_for [@rental, @rental.messages.new] do |f| %>
+        <div class="form-group">
+          <%= f.text_field :content, {class: 'form-control', id: "exampleInputEmail2", placeholder: "Enter your message here", required: ""}%>
+        </div>
+        <p>NOTICE:  When submitting a message your message becomes a permanent and unchangable part of this transaction.  Once submitted, messages cannot be changed or removed, under any circumstances.</p>
+        <%= f.submit %>
+      </div>
+    </div>
+  <% end %>

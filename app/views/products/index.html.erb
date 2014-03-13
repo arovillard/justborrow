@@ -1,12 +1,11 @@
-
-        <div class="col-lg-9 content-right">
-          <h4>Items near you!</h4>
-          <div id="mapbox">
-            <div id="map-canvas" style="width: auto; height: 400px"></div>
-          </div>
-          <h4>Recommended</h4>
-          <div class="row selected-classifieds">
-            <%= render @products %>
-          </div>
-        </div>
-      </div>
+  <div class="col-lg-9 content-right">
+    <div id="mapbox">
+      <div id="map-canvas" style="width: auto; height: 320px"></div>
+    </div>
+    <div><p class="pagination"><%= paginate @products %></p></div>
+    <%= render @products %>
+    <div class="hidden-lg hidden-md"><p class="pagination"><%= paginate @products %></p></div>
+    <div class="row selected-classifieds">
+    </div>
+  </div>
+</div>

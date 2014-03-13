@@ -23,6 +23,8 @@ class RentalsController < ApplicationController
   end
 
   def show
+    @rental = Rental.find(params[:id])
+    @messages = @rental.messages.sort_by(&:created_at).reverse
     # add_breadcrumb 'product rentals', product_rental_path
   end
 
