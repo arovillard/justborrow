@@ -7,7 +7,7 @@ class ProductsController < ApplicationController
     if params[:tag]
       @products = Product.near([@location.latitude, @location.longitude], 25).tagged_with(params[:tag]).page(params[:page])
     elsif params[:search]
-      @products = Product.near([@location.latitude, @location.longitude], 25).search(params[:search]).page(params[:page])
+      @products = Kaminari.paginate_array(Product.near([@location.latitude, @location.longitude], 25).search(params[:search])).page(params[:page]).per(8) .page(params[:page])
     else
      @products = Product.near([@location.latitude, @location.longitude], 25).page(params[:page])
     end
