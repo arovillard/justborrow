@@ -5,11 +5,11 @@ class ProductsController < ApplicationController
 
   def index
     if params[:tag]
-      @products = Product.near([@location.latitude, @location.longitude], 25).tagged_with(params[:tag])
+      @products = Product.near([@location.latitude, @location.longitude], 25).tagged_with(params[:tag]).page(params[:page])
     elsif params[:search]
-      @products = Product.near([@location.latitude, @location.longitude], 25).search(params[:search])
+      @products = Product.near([@location.latitude, @location.longitude], 25).search(params[:search]).page(params[:page])
     else
-     @products = Product.near([@location.latitude, @location.longitude], 25)
+     @products = Product.near([@location.latitude, @location.longitude], 25).page(params[:page])
     end
     @hash = Gmaps4rails.build_markers(@products) do |product, marker|
       marker.lat product.latitude

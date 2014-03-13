@@ -7,19 +7,13 @@ class MessagesController < ApplicationController
     @product = @rental.product
   end
 
-  def new
-    @rental = Rental.find(params[:rental_id])
-    @product = @rental.product
-    @message = Message.new
-  end
-
   def create
     @rental = Rental.find(params[:rental_id])
     @message = Message.new(message_params)
     @message.user = current_user
     @message.rental = @rental
     if @message.save
-      redirect_to rental_messages_path(@rental), :notice => "Message Posted!"
+      redirect_to rental_path(@rental), :notice => "Message Posted!"
     else
       render :new
     end

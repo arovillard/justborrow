@@ -18,6 +18,9 @@ gem 'coffee-rails', '~> 4.0.0'
 #sorcery
 gem 'sorcery'
 
+#kaminari
+gem 'kaminari'
+
 #acts_as_tggable_on
 gem 'acts-as-taggable-on'
 

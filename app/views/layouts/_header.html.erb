@@ -29,13 +29,14 @@
           </button>
         </div>
         <div class="collapse navbar-collapse" id="czsale-navbar">
-          <%= link_to 'Add Item', new_product_path, :class => 'btn btn-success navbar-btn add-classified-btn navbar-left' %>
+          <%= link_to 'Add Item', new_product_path, :class => 'btn btn-success navbar-btn add-classified-btn navbar-left hidden-sm hidden-xs' %>
           <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to 'Add an Item', new_product_path, :class => 'hidden-md hidden-lg hidden-xl' %></li>
+            <li><%= link_to 'Help', help_path %></li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Pages <b class="caret"></b></a>
               <ul class="dropdown-menu">
                 <li><%= link_to 'Home', root_path %></li>
-                <li><%= link_to 'Add an Item', new_product_path %></li>
                 <li><a href="category.html">Category page</a></li>
                 <li><a href="detail.html">Classified detail</a></li>
                 <li><%= link_to 'Terms', terms_path %></li>
@@ -44,7 +45,6 @@
                 <li><%= link_to 'Sign up', new_user_path %></li>
               </ul>
             </li>
-            <li><%= link_to 'Help', help_path %></li>
           <% if current_user %>
             <li class="divider"></li>
             <li class="dropdown">
@@ -101,17 +101,23 @@
       <!-- /Static navbar -->
       <div class="row content">
         <div class="col-lg-3 content-left">
-          <h4>Search</h4>
           <div class="well well-sm">
+            <div class="row">
             <form>
               <fieldset>
+                <div class="col-xs-9 content-left">
                 <%= form_tag(products_path, method: "get") do %>
-                <%= text_field_tag(:search,"",:class => "form-control", :placeholder => "What are you looking for?") %> <%= button_tag("Search",:name => nil, :class=> "btn btn-danger btn-sm btn-search") %>
+                  <%= text_field_tag(:search,"",:class => "form-control", :placeholder => "Search items near you!") %>
+                </div>
+                <div class="col-xs-3 content-left">
+                  <%= button_tag("Search",:name => nil, :class=> "btn btn-danger btn-sm btn-search") %>
+                </div>
                 <% end %>
               </fieldset>
             </form>
+            </div>
           </div>
-          <div class="hidden-sm hidden-xs content-left">
+          <div class="hidden-sm hidden-xs">
             <h4>Categories</h4>
             <div class="list-group categories">
               <% @categories = Category.all.sort_by!{ |e| e.category_name.downcase } %>
