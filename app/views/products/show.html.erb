@@ -1,7 +1,4 @@
 <div class="col-lg-9 content-right showpage">
-  <h2><%=@product.title%></h2>
-  <%= link_to 'Edit', edit_product_path(@product) %> |
-  <%= link_to 'Delete', product_path(@product), :method => :delete %>
   <div class="row">
     <div class="col-md-8">
       <div class="row">
@@ -45,10 +42,24 @@
         </div>
       </div>
       <div class="col-md-12">
+        <div class="row">
+          <div class="col-xs-12 col-lg-6 text-left hidden-md hidden-lg">
+            <%= link_to 'Edit', edit_product_path(@product) %> |
+            <%= link_to 'Delete', product_path(@product), :method => :delete %>
+          </div>
+          <div class="col-xs-12 col-lg-6 show-product-title ">
+            <h2><%=@product.title%></h2>
+          </div>
+          <div class="col-xs-12 col-lg-6 text-right hidden-xs hidden-sm">
+            <%= link_to 'Edit', edit_product_path(@product) %> |
+            <%= link_to 'Delete', product_path(@product), :method => :delete %>
+          </div>
+        </div>
+        <div class="clearfix"></div>
         <h4>Description</h4>
         <p style="text-align: justify;"><%=@product.description%></p>
       </div>
-      <div class="col-md-12">
+      <div class="col-lg-12 hidden-sm hidden-xs">
       <h4>Send message to seller</h4>
       <div class="panel panel-default">
         <div class="panel-body">
@@ -71,7 +82,7 @@
       <div class="row">
         <div class="col-md-12">
           <div class="well">
-            <div class="row">
+            <div class="row show-right-column">
               <div class="col-sm-12">
                 <section class="alerts">
                   <% if flash[:notice] %>
@@ -104,7 +115,6 @@
                 <small>Location: <cite title="Prague, Czech Republic">Prague, Czech Republic <span class="glyphicon glyphicon-map-marker"></span></cite></small><br />
                 <div id="mapbox">
                   <div id="map-canvas" style="width: auto; height: 200px"></div>
->>>>>>> reservlogic
                 </div>
               </div>
             </div>
