@@ -11,9 +11,7 @@ a:hover {
 }
 
 .wrapper {
-  position: relative;
-  padding-top: 45px;
-}
+  position: relative;}
 
 .logo {
   position: absolute;

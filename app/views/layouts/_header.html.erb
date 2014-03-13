@@ -15,7 +15,7 @@
     <div class="container wrapper">
       <!-- Logo -->
       <div class="logo">
-        <%= link_to(image_tag("czsale_logo.png", :alt => "logo", :title => "JustBorrow.it", :style => "max-width: 200px; padding-top: 30px"), "/") %>
+        <%= link_to(image_tag("czsale_logo.png", :alt => "logo", :title => "JustBorrow.it", :style => "max-width: 200px; margin-top: -14px"), "/") %>
       </div>
       <!-- /Logo -->
       <!-- Static navbar -->
@@ -65,11 +65,11 @@
                       <%= form_tag sessions_path do %>
                         <div class="form-group">
                           <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                          <%= text_field_tag :email, params[:email], :class => 'form-control' %>
+                          <%= text_field_tag :email, params[:email], :class => 'form-control',:placeholder => "Email address" %>
                         </div>
                         <div class="form-group">
                           <label class="sr-only" for="exampleInputPassword2">Password</label>
-                          <%= password_field_tag :password, "", :class => 'form-control' %>
+                          <%= password_field_tag :password, "", :class => 'form-control', :placeholder => "Password" %>
                         </div>
                         <div class="checkbox">
                           <label>

@@ -10,8 +10,6 @@
       <%= link_to( product_path(product) ) do %>
         <strong><%= product.title %></strong></br>
         <small><%= truncate(product.description, length: 60) %></small></br>
-
-        <!-- <small><%=link_to product.lender.email, controller: "users", action: "show", id: product.lender.id %></small> -->
       <% end %>
       <small><b>Category:</b> <%= product.category.category_name %></small><br>
       <small><b>Tags:</b> <%= raw product.tag_list.map {|t| link_to t, tag_path(t)}.join(",  ") %></small>
