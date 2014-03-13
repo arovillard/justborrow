@@ -5,34 +5,36 @@
     </div>
     <% @user.products.each do |product| %>
       <% product.rentals.sort_by(&:created_at).reverse.each do |rental| %>
-      <div class="panel-body">
-        <div class="col-sm-1"><b>ID:</b><%= rental.id %></div>
-        <div class="col-sm-3"><b>Borrower:</b><br><%= rental.borrower.email %></div>
-        <div class="col-sm-3"><b>Details:</b><br><%= truncate(rental.rental_detail, length: 150) %></div>
-        <div class="col-sm-2"><b>Dates:</b><br><%= rental.start_date.strftime("%d/%m/%Y")  %> to <%= rental.end_date.strftime("%d/%m/%Y") %></div>
-        <div class="col-sm-3">
-          <% if rental.borrower_acceptance == nil %>
-            <% if rental.rental_approved == nil %>
-              <%= form_tag rental_path(rental), method: :patch do %>
-                <%= button_tag "Accept", :name => 'rental[rental_approved]', :value => 'true', :class => 'btn btn-success' %>
-                <%= button_tag "Decline", :name => 'rental[rental_approved]', :value => 'false', :class => 'btn btn-danger' %>
-              <% end %>
-            <% elsif rental.rental_approved == true %>
-              <div>
-                <%= form_tag rental_path(rental), method: :patch, :html => {:class => "form-control"} do %>
-                  <%= button_tag "Change Approval", :name => 'rental[rental_approved]', :value => nil, :class => 'btn btn-warning' %>
+      <%= link_to(rental_path(rental), :class => "rental-link") do %>
+        <div class="panel-body rental-row">
+          <div class="col-sm-1"><b>ID:</b><%= rental.id %></div>
+          <div class="col-sm-3"><b>Borrower:</b><br><%= rental.borrower.email %></div>
+          <div class="col-sm-3"><b>Details:</b><br><%= truncate(rental.rental_detail, length: 150) %></div>
+          <div class="col-sm-2"><b>Dates:</b><br><%= rental.start_date.strftime("%d/%m/%Y")  %> to <%= rental.end_date.strftime("%d/%m/%Y") %></div>
+          <div class="col-sm-3">
+            <% if rental.borrower_acceptance == nil %>
+              <% if rental.rental_approved == nil %>
+                <%= form_tag rental_path(rental), method: :patch do %>
+                  <%= button_tag "Accept", :name => 'rental[rental_approved]', :value => 'true', :class => 'btn btn-success' %>
+                  <%= button_tag "Decline", :name => 'rental[rental_approved]', :value => 'false', :class => 'btn btn-danger' %>
                 <% end %>
-              </div>
-            <% elsif rental.rental_approved == false %>
-              <p>You have declined this transaction</p>
+              <% elsif rental.rental_approved == true %>
+                <div>
+                  <%= form_tag rental_path(rental), method: :patch, :html => {:class => "form-control"} do %>
+                    <%= button_tag "Change Approval", :name => 'rental[rental_approved]', :value => nil, :class => 'btn btn-warning' %>
+                  <% end %>
+                </div>
+              <% elsif rental.rental_approved == false %>
+                <p>You have declined this transaction</p>
+              <% end %>
+            <% elsif rental.borrower_acceptance == true %>
+                <p>The transaction has been processed</p>
+            <% elsif rental.borrower_acceptance == false %>
+                <p>The borrower has declined the transaction</p>
             <% end %>
-          <% elsif rental.borrower_acceptance == true %>
-              <p>The transaction has been processed</p>
-          <% elsif rental.borrower_acceptance == false %>
-              <p>The borrower has declined the transaction</p>
-          <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
       <% end %>
     <% end %>
   </div>
@@ -41,7 +43,8 @@
       <h3 class="panel-title">Borrowing requests sent from <%= @user.email %></h3>
     </div>
     <% @user.rentals.sort_by(&:created_at).reverse.each do |rental| %>
-    <div class="panel-body">
+    <%= link_to(rental_path(rental), :class => "rental-link") do %>
+    <div class="panel-body rental-row">
       <div class="col-sm-1"><b>#:</b><%= rental.id %></div>
       <div class="col-sm-3"><b>Lender:</b><br><%= rental.product.lender.email %></div>
       <div class="col-sm-3"><b>Details:</b><br><%= truncate(rental.rental_detail, length: 150) %></div>
@@ -67,6 +70,7 @@
         <% end %>
       </div>
     </div>
+    <% end %>
     <% end %>
   </div>
 </div>

@@ -291,6 +291,17 @@ box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
   margin-top: -30px;
 }
 
+.rental-link {
+  text-decoration: none;
+  color: #777777;
+}
+
+.rental-row {
+border: 2px solid;
+border-radius: 8px;
+margin: 15px !important;
+}
+
 /*.showpage {
   border: 1px #dddddd solid;
   border-radius: 4px;
