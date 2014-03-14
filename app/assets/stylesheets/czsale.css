@@ -33,7 +33,7 @@ a:hover {
 a.list-group-item:hover, a.list-group-item.active, a.list-group-item.active:hover {
   border-color: #ddd;
   background-color: #BEC0C8 !important;
-  color: #fff;
+  text-decoration: none !important;
 }
 
 a.list-subgroup-item {
@@ -42,10 +42,9 @@ a.list-subgroup-item {
 }
 
 a.list-subgroup-item:hover, a.list-subgroup-item.active, a.list-subgroup-item.active:hover {
-  text-decoration: none;
+  text-decoration: none !important;
   border-color: #ddd;
   background-color: #BEC0C8 !important;
-  color: #fff;
 }
 
 .list-subgroup-item {
@@ -301,6 +300,24 @@ div.rental-row:hover {background-color: #EDF8FE;}
 border: 2px solid;
 border-radius: 8px;
 margin: 15px !important;
+}
+
+.index-product {
+  text-decoration: none !important;
+  color: #777777;
+}
+.index-product:hover {
+  text-decoration: none;
+  color: #777777;
+}
+
+.index-product p{
+  color: #d2322d;
+  text-align: center;
+}
+
+.index-product span {
+  color: #383838;
 }
 
 /*.showpage {
