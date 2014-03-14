@@ -1,5 +1,66 @@
 <div class="col-lg-9 content-right">
-  <% if current_user.id == @rental.borrower.id || current_user.id == @rental.lender.id %>
+  <h3>Rental Details</h3>
+  <hr>
+  <% if current_user == @rental.product.lender %>
+  <div class="panel-body rental-row">
+    <div class="col-sm-1"><b>ID:</b><%= @rental.id %></div>
+    <div class="col-sm-3"><b>Borrower:</b><br><%= @rental.borrower.email %></div>
+    <div class="col-sm-3"><b>Details:</b><br><%= truncate(@rental.rental_detail, length: 150) %></div>
+    <div class="col-sm-2"><b>Dates:</b><br><%= @rental.start_date.strftime("%d/%m/%Y")  %> to <%= @rental.end_date.strftime("%d/%m/%Y") %></div>
+    <div class="col-sm-3">
+      <% if @rental.borrower_acceptance == nil %>
+        <% if @rental.rental_approved == nil %>
+          <%= form_tag rental_path(@rental), method: :patch do %>
+            <%= button_tag "Accept", :name => 'rental[rental_approved]', :value => 'true', :class => 'btn btn-success' %>
+            <%= button_tag "Decline", :name => 'rental[rental_approved]', :value => 'false', :class => 'btn btn-danger' %>
+          <% end %>
+        <% elsif @rental.rental_approved == true %>
+          <div>
+            <%= form_tag rental_path(@rental), method: :patch, :html => {:class => "form-control"} do %>
+              <%= button_tag "Change Approval", :name => 'rental[rental_approved]', :value => nil, :class => 'btn btn-warning' %>
+            <% end %>
+          </div>
+        <% elsif @rental.rental_approved == false %>
+          <p>You have declined this transaction</p>
+        <% end %>
+      <% elsif @rental.borrower_acceptance == true %>
+          <p>The transaction has been processed</p>
+      <% elsif @rental.borrower_acceptance == false %>
+          <p>The borrower has declined the transaction</p>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+  <% if current_user == @rental.borrower %>
+  <div class="panel-body rental-row">
+    <div class="col-sm-1"><b>#:</b><%= @rental.id %></div>
+    <div class="col-sm-3"><b>Lender:</b><br><%= @rental.product.lender.email %></div>
+    <div class="col-sm-3"><b>Details:</b><br><%= truncate(@rental.rental_detail, length: 150) %></div>
+    <div class="col-sm-2"><b>Dates:</b><br><%= @rental.start_date.strftime("%d/%m/%Y")  %> to <%= @rental.end_date.strftime("%d/%m/%Y") %></div>
+    <div class="col-sm-3">
+      <% if @rental.rental_approved == true %>
+        <% if @rental.borrower_acceptance == nil %>
+          <div>
+            <%= form_tag rental_path(@rental), method: :patch, :html => {:class => "form-control"} do %>
+            <%= button_tag "Borrow It", :name => 'rental[borrower_acceptance]', :value => 'true', :class => 'btn btn-success' %>
+            <%= button_tag "Decline", :name => 'rental[borrower_acceptance]', :value => 'false', :class => 'btn btn-danger' %>
+            <% end %>
+          </div>
+        <% elsif @rental.borrower_acceptance == true %>
+          <p>The transaction has been processed</p>
+        <% else %>
+          <p>You have decliened this transaction</p>
+        <% end %>
+      <% elsif @rental.rental_approved == nil %>
+        <p>Transaction pending approval from lender</p>
+      <% elsif @rental.rental_approved == false %>
+        <p>The lender has declined the transaction</p>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+
+  <% if current_user.id == @rental.borrower.id || current_user.id == @rental.product.lender.id %>
       <%= render 'newmessage' %>
       <%= render 'showmessages' %>
   <% else %>
