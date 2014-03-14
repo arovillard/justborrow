@@ -85,7 +85,6 @@
 
     function addMarkers() {
       for (var i = 0; i < (<%=raw @hash.to_json %>).length; i++) {
-        console.log((<%= raw @hash.to_json %>)[i]);
         var latLng = new google.maps.LatLng((<%= raw @hash.to_json %>)[i].lat, (<%= raw @hash.to_json %>)[i].lng );
         var prodId = <%= raw @hash.to_json %>[i].id;
         var marker = new google.maps.Marker({
@@ -95,10 +94,6 @@
           id: prodId,
           animation: google.maps.Animation.DROP,
         });
-        // google.maps.event.addListener(marker, 'mouseout', function() {
-        //   console.log("hello")
-        //   infoWindow.close();
-        // });
         google.maps.event.addListener(marker, 'click', onMarkerClick);
 
       }
