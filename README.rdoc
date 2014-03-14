@@ -1,7 +1,7 @@
 == Feature Backlog
 
-* make pricing information two decimal places on the homepage
-* limit the length of the add description on the homepage
+* make pricing information two decimal places on the homepage<<DONE>>
+* limit the length of the add description on the homepage<<DONE>>
 * alias from products to "items"
 * integrate paypal payments
 * integrate automatic payments to lenders
@@ -13,10 +13,10 @@
 * hephalump - product seeds file <<DONE>>
 * hephalump - media query for categories section
 
-* arovillard - rental logic
-* arovillard - update of categories from database
-* arovillard - make index picture display
+* arovillard - rental logic<<DONE>>
+* arovillard - update of categories from database<<DONE>>
+* arovillard - make index picture display<<DONE>>
 
-* hephalump / arovillard - add Geocoder and Maps
-  * FEATURE - items on index page are marked on the displayed map
-* hephalump / arovillard - Product search
+* arovillard - add Geocoder and Maps<<DONE>>
+* arrovillard - items on index page are marked on the displayed map<<DONE>>
+* arovillard - Product search<<DONE>>
