@@ -5,25 +5,25 @@
   </div>
   <h4>Category: <%= @category.category_name %></h4>
   <div class="row selected-classifieds">
-    <% @category_products.each do |category_product| %>
-      <div class="col-lg-3">
-        <div class="thumbnail" id="id<%= category_product.id %>">
-          <% if category_product.product_images.first %>
-            <%= image_tag category_product.product_images.first.image_url(:thumb) %>
-          <% else %>
-            <img src="http://placehold.it/800x600/e0e0e0" />
-          <% end %>
-          <div class="caption">
-            <%= link_to( product_path(category_product) ) do %>
-              <p><strong>$<%= number_with_precision(category_product.price, :precision => 2) %>/day</strong></p>
-              <strong><%= category_product.title %></strong></br>
-              <small><%= truncate(category_product.description, length: 60) %></small></br>
+    <% @category_products.each do |product| %>
+      <%= link_to( product_path(product), :class => "index-product" ) do %>
+        <div class="col-lg-3">
+          <div class="thumbnail" id="id<%= product.id %>">
+            <% if product.product_images.first %>
+              <%= image_tag product.product_images.first.image_url(:thumb) %>
+            <% else %>
+              <img src="http://placehold.it/800x600/e0e0e0" />
             <% end %>
-            <small><b>Category:</b> <%= category_product.category.category_name %></small><br>
-            <small><b>Tags:</b> <%= raw category_product.tag_list.map {|t| link_to t, tag_path(t)}.join(",  ") %></small>
+            <div class="caption">
+              <p><strong>$<%= number_with_precision(product.price, :precision => 2) %>/day</strong></p>
+                <strong><%= product.title %></strong></br>
+                <small><%= truncate(product.description, length: 60) %></small></br>
+              <small><b>Category:</b> <%= product.category.category_name %></small><br>
+              <small><b>Tags:</b> <%= raw product.tag_list.map {|t| link_to t, tag_path(t)}.join(",  ") %></small>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
