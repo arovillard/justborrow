@@ -4,6 +4,6 @@ module RentalsHelper
   end
 
   def rental_info(rental)
-    ((rental.end_date.to_date - rental.start_date.to_date)* 100) * rental.product.price
+    ((rental.end_date.to_date - rental.start_date.to_date).to_i) * rental.product.price * 100
   end
 end

@@ -19,6 +19,9 @@ class ChargesController < ApplicationController
       :currency    => 'cad'
     )
 
+    rental = Rental.find(params[:rental_id])
+    rental.update( :borrower_acceptance => true )
+
     redirect_to user_path(current_user)
 
   rescue Stripe::CardError => e

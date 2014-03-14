@@ -3,11 +3,11 @@
     <div class="panel-heading">
       <h3 class="panel-title">Lending requests sent to <%= @user.email %></h3>
     </div>
-    <% @user.products.each do |product| %>
-      <% product.rentals.sort_by(&:created_at).reverse.each do |rental| %>
+    <% @rentals = Rental.where( 'product_id IN (?)', @user.products.map(&:id) ) %>
+    <% @rentals.sort_by(&:created_at).reverse.each do |rental| %>
       <%= link_to(rental_path(rental), :class => "rental-link") do %>
         <div class="panel-body rental-row">
-          <div class="col-sm-1"><b>ID:</b><%= rental.id %></div>
+          <div class="col-sm-1"><b>#:</b><%= rental.id %></div>
           <div class="col-sm-3"><b>Borrower:</b><br><%= rental.borrower.email %></div>
           <div class="col-sm-3"><b>Details:</b><br><%= truncate(rental.rental_detail, length: 150) %></div>
           <div class="col-sm-2"><b>Dates:</b><br><%= rental.start_date.strftime("%d/%m/%Y")  %> to <%= rental.end_date.strftime("%d/%m/%Y") %></div>
@@ -35,7 +35,6 @@
           </div>
         </div>
       <% end %>
-      <% end %>
     <% end %>
   </div>
   <div class="panel panel-info">
@@ -56,6 +55,7 @@
               <%= form_tag charges_path do %>
                 <%= hidden_field_tag :amount, rental_info(rental) %>
                 <%= hidden_field_tag :description, rental_description(rental) %>
+                <%= hidden_field_tag :rental_id, rental.id %>
                 <script
                   src="https://checkout.stripe.com/checkout.js" class="stripe-button"
                   data-key="pk_test_iqnxAQsZ7YsFt9NvXrt3MBKz"
