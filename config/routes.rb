@@ -18,6 +18,8 @@ Justborrowit::Application.routes.draw do
     resources :categories
   end
 
+  resources :charges
+
   get 'help' => 'pages#help'
   get 'terms' => 'pages#terms'
   get 'contact' => 'pages#contact'
