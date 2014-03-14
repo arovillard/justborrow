@@ -32,7 +32,7 @@ a:hover {
 
 a.list-group-item:hover, a.list-group-item.active, a.list-group-item.active:hover {
   border-color: #ddd;
-  background-color: #d9534f;
+  background-color: #BEC0C8 !important;
   color: #fff;
 }
 
@@ -44,7 +44,7 @@ a.list-subgroup-item {
 a.list-subgroup-item:hover, a.list-subgroup-item.active, a.list-subgroup-item.active:hover {
   text-decoration: none;
   border-color: #ddd;
-  background-color: #d9534f;
+  background-color: #BEC0C8 !important;
   color: #fff;
 }
 
