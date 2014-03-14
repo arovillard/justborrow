@@ -124,7 +124,7 @@
               <% @categories.each do |c| %>
                 <%= link_to category_page_path + "/?category_id="+c.id.to_s, :class=> "list-group-item" do %>
                   <%= c.category_name %>
-                  <%= content_tag :span, "", :class => "glyphicon glyphicon-chevron-right" %>
+                  <%= content_tag :span, "" %>
                 <% end %>
               <% end %>
            </div>
@@ -146,7 +146,7 @@
                 <% @categories.each do |c| %>
                   <%= link_to category_page_path + "/?category_id="+c.id.to_s, :class=> "list-group-item" do %>
                     <%= c.category_name %>
-                    <%= content_tag :span, "", :class => "glyphicon glyphicon-chevron-right" %>
+                    <%= content_tag :span, "" %>
                   <% end %>
                 <% end %>
                </div>
